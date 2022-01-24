@@ -25,11 +25,11 @@ fn solve(draw_diagonals: bool) {
     println!("{answer}");
 }
 
-fn my_range(a: usize, b: usize) -> Vec<usize> {
+fn my_range(a: usize, b: usize) -> Box<dyn Iterator<Item = usize>> {
     if a < b {
-        (a..=b).collect()
+        Box::new(a..=b) as Box<dyn Iterator<Item = _>>
     } else {
-        (b..=a).rev().collect()
+        Box::new((b..=a).rev())
     }
 }
 
@@ -39,8 +39,8 @@ fn draw_diagonal(board: &mut Vec2d<usize>, x1: usize, y1: usize, x2: usize, y2: 
     }
     let y_it = my_range(y1, y2);
     let x_it = my_range(x1, x2);
-    let points = x_it.iter().zip(y_it.iter());
-    for (&x, &y) in points {
+    let points = x_it.zip(y_it);
+    for (x, y) in points {
         board.set(x, y, board.at(x, y) + 1);
     }
 }
