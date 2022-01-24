@@ -1,5 +1,4 @@
-mod common;
-use crate::common::read_lines;
+use aoc::read_lines;
 
 pub fn main() {
     let length = 12;

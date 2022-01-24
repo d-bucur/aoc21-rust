@@ -1,38 +1,5 @@
+use aoc::Vec2d;
 use std::collections::HashMap;
-
-#[derive(Debug)]
-pub struct Vec2d<T> {
-    nums: Vec<T>,
-    width: usize,
-}
-
-#[allow(dead_code)]
-impl<T> Vec2d<T>
-where
-    T: Clone,
-{
-    fn new(width: usize, height: usize, init: T) -> Vec2d<T> {
-        Vec2d {
-            nums: vec![init; width * height],
-            width,
-        }
-    }
-
-    fn at(&self, x: usize, y: usize) -> T {
-        self.nums[y * self.width + x].clone()
-    }
-
-    fn set(&mut self, x: usize, y: usize, val: T) {
-        self.nums[y * self.width + x] = val;
-    }
-
-    fn get_width(&self) -> usize {
-        self.width
-    }
-    fn get_height(&self) -> usize {
-        self.nums.len() / self.width
-    }
-}
 
 #[derive(Debug)]
 pub struct BingoBoard {

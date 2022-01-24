@@ -1,7 +1,5 @@
+use aoc::read_lines;
 use std::collections::HashSet;
-
-mod common;
-use crate::common::read_lines;
 
 pub fn main() {
     let length = 12;

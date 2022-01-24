@@ -1,7 +1,5 @@
+use aoc::read_lines;
 use regex::Regex;
-
-mod common;
-use crate::common::read_lines;
 
 fn instruction_re() -> Regex {
     Regex::new(r"(\w+) (\d+)").unwrap()
