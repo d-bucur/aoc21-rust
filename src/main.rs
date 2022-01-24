@@ -1,7 +1,7 @@
 mod common;
 
-mod day2;
-use day2::part2;
+mod day3;
+use day3::*;
 
 fn main() {
     part2();
