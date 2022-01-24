@@ -16,7 +16,7 @@ pub fn part1() {
         total += 1;
     }
 
-    let half_total = total/2;
+    let half_total = total / 2;
     let mut gamma = 0u32;
     let mut epsilon = 0u32;
     for (i, v) in ones.iter().rev().enumerate() {
@@ -57,7 +57,12 @@ fn co2_filter(zeroes: &HashSet<usize>, ones: &HashSet<usize>) -> bool {
     zeroes.len() <= ones.len()
 }
 
-fn process(length: usize, all_nums: &Vec<String>, mut valid_nums: HashSet<usize>, filter: fn(&HashSet<usize>, &HashSet<usize>) -> bool) -> usize {
+fn process(
+    length: usize,
+    all_nums: &Vec<String>,
+    mut valid_nums: HashSet<usize>,
+    filter: fn(&HashSet<usize>, &HashSet<usize>) -> bool,
+) -> usize {
     for i in 0usize..length {
         let (zeroes, ones) = divide(&all_nums, &valid_nums, i);
         if filter(&zeroes, &ones) {
@@ -72,15 +77,17 @@ fn process(length: usize, all_nums: &Vec<String>, mut valid_nums: HashSet<usize>
     *valid_nums.iter().next().unwrap()
 }
 
-
-fn divide(all_nums: &Vec<String>, valid_nums: &HashSet<usize>, i: usize) -> (HashSet<usize>, HashSet<usize>) {
+fn divide(
+    all_nums: &Vec<String>,
+    valid_nums: &HashSet<usize>,
+    i: usize,
+) -> (HashSet<usize>, HashSet<usize>) {
     let mut ones = HashSet::new();
     let mut zeroes = HashSet::new();
     for n in valid_nums {
         if all_nums[*n].as_bytes()[i] as char == '0' {
             zeroes.insert(*n);
-        }
-        else {
+        } else {
             ones.insert(*n);
         }
     }
