@@ -6,3 +6,8 @@ pub fn read_lines() -> impl Iterator<Item = String> {
     let it = buffer.lines().map(|e| e.unwrap());
     it
 }
+
+#[allow(dead_code)]
+fn main() {
+    
+}
