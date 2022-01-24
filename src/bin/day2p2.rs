@@ -20,7 +20,7 @@ pub fn main() {
             "forward" => {
                 horizontal += val;
                 depth += aim * val;
-            },
+            }
             "down" => aim += val,
             "up" => aim -= val,
             _ => (),

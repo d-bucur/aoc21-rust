@@ -3,7 +3,6 @@ mod day4common;
 use crate::common::read_lines;
 use crate::day4common::*;
 
-
 pub fn main() {
     let mut it = read_lines();
     let numbers = read_numbers(&mut it);

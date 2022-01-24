@@ -18,7 +18,10 @@ pub fn main() {
         }
         if boards.len() == 1 && removal.len() > 0 {
             let score = boards.iter().next().unwrap().1.score;
-            println!("Last Bingo! on {num}. Unmaked: {score}. Final score: {}", score * num);
+            println!(
+                "Last Bingo! on {num}. Unmaked: {score}. Final score: {}",
+                score * num
+            );
             return;
         }
         for i in removal.iter() {

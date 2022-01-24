@@ -1,6 +1,6 @@
 # How to run
 
-To run a specific day run the specific and pass in the input for that day, example
+To solve a specific day run the corresponding binary and pass in its input, for example example
 
 ```
 cat inputs/day1.input | cargo run --bin day1p2

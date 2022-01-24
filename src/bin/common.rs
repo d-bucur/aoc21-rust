@@ -8,6 +8,4 @@ pub fn read_lines() -> impl Iterator<Item = String> {
 }
 
 #[allow(dead_code)]
-fn main() {
-    
-}
+fn main() {}
