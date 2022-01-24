@@ -1,4 +1,7 @@
-use std::io::{self, BufRead, BufReader};
+use std::{
+    fmt::Debug,
+    io::{self, BufRead, BufReader},
+};
 
 pub fn read_lines() -> impl Iterator<Item = String> {
     let stdin = io::stdin();
@@ -7,7 +10,6 @@ pub fn read_lines() -> impl Iterator<Item = String> {
     it
 }
 
-#[derive(Debug)]
 pub struct Vec2d<T> {
     pub nums: Vec<T>,
     pub width: usize,
@@ -38,5 +40,25 @@ where
     }
     pub fn get_height(&self) -> usize {
         self.nums.len() / self.width
+    }
+}
+
+impl<T> Debug for Vec2d<T>
+where
+    T: Debug,
+    T: Clone,
+{
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut x = 0usize;
+        let width = self.get_width();
+        for n in self.nums.iter() {
+            f.write_fmt(format_args!("{:?}, ", n))?;
+            x += 1;
+            if x == width {
+                f.write_str("\n")?;
+                x = 0;
+            }
+        }
+        Result::Ok(())
     }
 }
