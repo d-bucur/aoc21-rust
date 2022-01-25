@@ -1,18 +1,41 @@
+use std::{thread, collections::HashMap};
+
 use aoc::read_lines;
 
-fn solve(days: u32) {
-    let mut fish: Vec<u32> = read_lines()
+const THREADS_MAX: usize = 8;
+
+fn part1(days: u32) {
+    // Keeping as example of threading even though solution 2 is more efficient
+    let all_fish = read_fish();
+    let chunk_size = (all_fish.len() as f32 / THREADS_MAX as f32).ceil() as usize;
+    let fish_sectors: Vec<Vec<u32>> = all_fish.chunks(chunk_size).map(|e| e.to_vec()).collect();
+    println!("{:?}", fish_sectors);
+
+    let mut threads = Vec::new();
+    for mut sector in fish_sectors {
+        threads.push(thread::spawn(move || {
+            for _day in 0..days {
+                simulate(&mut sector);
+            }
+            sector.len()
+        }));
+    }
+
+    let total = threads
+        .into_iter()
+        .map(|t| t.join().unwrap())
+        .sum::<usize>();
+
+    println!("{total}");
+}
+
+fn read_fish() -> Vec<u32> {
+    read_lines()
         .next()
         .unwrap()
         .split(",")
         .map(|e| e.parse::<u32>().unwrap())
-        .collect();
-
-    for day in 0..days {
-        simulate(&mut fish);
-        println!("Day {day}");
-    }
-    println!("{}", fish.len());
+        .collect()
 }
 
 fn simulate(fish: &mut Vec<u32>) {
@@ -30,11 +53,34 @@ fn simulate(fish: &mut Vec<u32>) {
     }
 }
 
+fn part2(days: u32) {
+    let fish_input = read_fish();
+    let mut fish_colony = HashMap::new();
+    for fish in fish_input {
+        *fish_colony.entry(fish).or_insert(0u64) += 1;
+    }
+    for _day in 0..days {
+        let mut new_colony = HashMap::new();
+        for (&days, &count) in fish_colony.iter() {
+            if days == 0 {
+                *new_colony.entry(6).or_insert(0) += count;
+                *new_colony.entry(8).or_insert(0) += count;
+            } else {
+                *new_colony.entry(days-1).or_insert(0) += count;
+            }
+        }
+        fish_colony = new_colony;
+    }
+    let total: u64 = fish_colony.iter().map(|e|e.1).sum();
+    println!("{:?}", fish_colony);
+    println!("{total}");
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     match args[1].as_str() {
-        "1" => solve(80),
-        "2" => solve(256),
+        "1" => part1(80),
+        "2" => part2(256),
         _ => println!("Invalid option"),
     }
 }
