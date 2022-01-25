@@ -13,13 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
     - uses: actions/checkout@v2
     - name: Install hyperfine
       run: |
         wget https://github.com/sharkdp/hyperfine/releases/download/v1.12.0/hyperfine_1.12.0_amd64.deb
         sudo dpkg -i hyperfine_1.12.0_amd64.deb
+
     - name: Run benchmark script
       run: ./benchmark.sh all
+      
     - name: Commit and push changes
       run: |
         git config --global user.name "Benchmark bot"
