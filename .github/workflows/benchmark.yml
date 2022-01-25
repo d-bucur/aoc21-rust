@@ -1,4 +1,4 @@
-name: Rust
+name: benchmark results
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run benchmark script
-      run: ./benchmark all
+      run: ./benchmark.sh all
     - name: Commit and push changes
       run: |
         git config --global user.name "Benchmark bot"
