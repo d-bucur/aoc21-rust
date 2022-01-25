@@ -1,0 +1,25 @@
+name: Rust
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run benchmark script
+      run: ./benchmark all
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "Benchmark bot"
+        git config --global user.email "benchmarks@bot.com"
+        git add results.md
+        git commit -m "Update benchmark results"
+        git push
