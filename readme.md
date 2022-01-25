@@ -1,13 +1,13 @@
 # How to run
 
 ```bash
-cat inputs/day{}.input | cargo run --bin day{} -- {part}
+cargo run --bin day{} -- {part}
 ```
 
 Example
 
 ```bash
-cat inputs/day5.input | cargo run --bin day5 -- 2
+cargo run --bin day5 -- 2
 ```
 
 # Benchmark
