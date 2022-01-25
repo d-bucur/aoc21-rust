@@ -5,10 +5,10 @@ use std::env;
 
 const BOARD_SIZE: usize = 999;
 
-fn solve(draw_diagonals: bool) {
+fn solve(draw_diagonals: bool) -> usize {
     let re = Regex::new(r"(\d+),(\d+) -> (\d+),(\d+)").unwrap();
     let mut board = Vec2d::new(BOARD_SIZE, BOARD_SIZE, 0usize);
-    for line in read_lines() {
+    for line in read_lines("5") {
         let caps = re.captures(&line).unwrap();
         let (x1, y1, x2, y2) = (
             caps[1].parse::<usize>().unwrap(),
@@ -23,6 +23,7 @@ fn solve(draw_diagonals: bool) {
     }
     let answer = board.nums.iter().filter(|&&e| e >= 2).count();
     println!("{answer}");
+    answer
 }
 
 fn my_range(a: usize, b: usize) -> Box<dyn Iterator<Item = usize>> {
@@ -62,6 +63,24 @@ fn main() {
     match args[1].as_str() {
         "1" => solve(false),
         "2" => solve(true),
-        _ => println!("Invalid option"),
+        _ => {
+            println!("Invalid option");
+            0
+        }
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(5294, solve(false));
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(21698, solve(true));
     }
 }

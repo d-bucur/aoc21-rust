@@ -7,12 +7,12 @@ fn instruction_re() -> Regex {
     Regex::new(r"(\w+) (\d+)").unwrap()
 }
 
-pub fn part1() {
+pub fn part1() -> i32 {
     let re = instruction_re();
     let mut horizontal = 0i32;
     let mut depth = 0i32;
 
-    for line in read_lines() {
+    for line in read_lines("2") {
         let cap = re.captures(&line).unwrap();
         let dist = cap[2].parse::<i32>().unwrap();
         match &cap[1] {
@@ -24,15 +24,16 @@ pub fn part1() {
     }
 
     println!("{}", horizontal * depth);
+    horizontal * depth
 }
 
-pub fn part2() {
+pub fn part2() -> i32 {
     let re = instruction_re();
     let mut horizontal = 0i32;
     let mut depth = 0i32;
     let mut aim = 0i32;
 
-    for line in read_lines() {
+    for line in read_lines("2") {
         let cap = re.captures(&line).unwrap();
         let val = cap[2].parse::<i32>().unwrap();
         match &cap[1] {
@@ -47,6 +48,7 @@ pub fn part2() {
     }
 
     println!("{}", horizontal * depth);
+    horizontal * depth
 }
 
 fn main() {
@@ -54,6 +56,24 @@ fn main() {
     match part.as_str() {
         "1" => part1(),
         "2" => part2(),
-        _ => println!("Invalid option"),
+        _ => {
+            println!("Invalid option");
+            0
+        }
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(1488669, part1());
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(1176514794, part2());
     }
 }

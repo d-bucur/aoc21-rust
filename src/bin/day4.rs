@@ -90,8 +90,8 @@ pub fn read_boards(input_it: impl Iterator<Item = String>) -> HashMap<usize, Bin
     boards
 }
 
-pub fn part1() {
-    let mut it = read_lines();
+pub fn part1() -> u32 {
+    let mut it = read_lines("4");
     let numbers = read_numbers(&mut it);
     let mut boards = read_boards(it);
 
@@ -99,14 +99,15 @@ pub fn part1() {
         for (_, board) in boards.iter_mut() {
             if board.mark(num) {
                 println!("Bingo! {}", num * board.score);
-                return;
+                return num * board.score;
             }
         }
     }
+    return 0;
 }
 
-pub fn part2() {
-    let mut it = read_lines();
+pub fn part2() -> u32 {
+    let mut it = read_lines("4");
     let numbers = read_numbers(&mut it);
     let mut boards = read_boards(it);
 
@@ -124,13 +125,14 @@ pub fn part2() {
                 "Last Bingo! on {num}. Unmaked: {score}. Final score: {}",
                 score * num
             );
-            return;
+            return score * num;
         }
         for i in removal.iter() {
             // println!("Bingo! on {num}. Removing board {i}. Remaining boards {}", boards.len());
             boards.remove(i);
         }
     }
+    return 0;
 }
 
 fn main() {
@@ -138,6 +140,24 @@ fn main() {
     match part.as_str() {
         "1" => part1(),
         "2" => part2(),
-        _ => println!("Invalid option"),
+        _ => {
+            println!("Invalid option");
+            0
+        }
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(67716, part1());
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(1830, part2());
     }
 }

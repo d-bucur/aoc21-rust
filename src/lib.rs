@@ -1,11 +1,15 @@
 use std::{
     fmt::Debug,
-    io::{self, BufRead, BufReader},
+    io::{BufRead, BufReader, Read},
 };
 
-pub fn read_lines() -> impl Iterator<Item = String> {
-    let stdin = io::stdin();
-    let buffer = BufReader::new(stdin);
+pub fn read_lines(day: &'static str) -> impl Iterator<Item = String> {
+    let fin = std::fs::File::open(format!("inputs/day{}.input", day)).unwrap();
+    lines_iter(fin)
+}
+
+pub fn lines_iter(fin: impl Read) -> impl Iterator<Item = String> {
+    let buffer = BufReader::new(fin);
     let it = buffer.lines().map(|e| e.unwrap());
     it
 }

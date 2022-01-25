@@ -2,12 +2,12 @@ use std::{collections::HashSet, env};
 
 use aoc::read_lines;
 
-pub fn part1() {
+pub fn part1() -> u32 {
     let length = 12;
     let mut total = 0u32;
     let mut ones = vec![0u32; length];
 
-    for line in read_lines() {
+    for line in read_lines("3") {
         for (i, d) in line.chars().enumerate() {
             if d == '1' {
                 ones[i] += 1;
@@ -28,15 +28,16 @@ pub fn part1() {
         }
     }
     println!("{} = gamma: {gamma} * epsilon: {epsilon}", gamma * epsilon);
+    gamma * epsilon
 }
 
-pub fn part2() {
+pub fn part2() -> u32 {
     let length = 12;
     let mut all_nums: Vec<String> = Vec::new();
     let mut oxygen_nums = HashSet::new();
     let mut co2_nums = HashSet::new();
 
-    for (i, l) in read_lines().enumerate() {
+    for (i, l) in read_lines("3").enumerate() {
         all_nums.push(l);
         oxygen_nums.insert(i);
         co2_nums.insert(i);
@@ -47,6 +48,7 @@ pub fn part2() {
     let co2_idx = process(length, &all_nums, co2_nums, co2_filter);
     let co2 = u32::from_str_radix(all_nums[co2_idx].as_str(), 2).unwrap();
     println!("{} = oxygen {:?} * co2 {:?}", oxygen * co2, oxygen, co2);
+    oxygen * co2
 }
 
 fn oxygen_filter(zeroes: &HashSet<usize>, ones: &HashSet<usize>) -> bool {
@@ -99,6 +101,24 @@ fn main() {
     match part.as_str() {
         "1" => part1(),
         "2" => part2(),
-        _ => println!("Invalid option"),
+        _ => {
+            println!("Invalid option");
+            0
+        }
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(3009600, part1());
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(6940518, part2());
     }
 }

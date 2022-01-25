@@ -4,7 +4,7 @@ use aoc::read_lines;
 
 const THREADS_MAX: usize = 8;
 
-fn part1(days: u32) {
+fn part1(days: u32) -> u64 {
     // Keeping as example of threading even though solution 2 is more efficient
     let all_fish = read_fish();
     let chunk_size = (all_fish.len() as f32 / THREADS_MAX as f32).ceil() as usize;
@@ -27,10 +27,11 @@ fn part1(days: u32) {
         .sum::<usize>();
 
     println!("{total}");
+    total as u64
 }
 
 fn read_fish() -> Vec<u32> {
-    read_lines()
+    read_lines("6")
         .next()
         .unwrap()
         .split(",")
@@ -53,7 +54,7 @@ fn simulate(fish: &mut Vec<u32>) {
     }
 }
 
-fn part2(days: u32) {
+fn part2(days: u32) -> u64 {
     let fish_input = read_fish();
     let mut fish_colony = HashMap::new();
     for fish in fish_input {
@@ -74,6 +75,7 @@ fn part2(days: u32) {
     let total: u64 = fish_colony.iter().map(|e| e.1).sum();
     println!("{:?}", fish_colony);
     println!("{total}");
+    total
 }
 
 fn main() {
@@ -81,6 +83,24 @@ fn main() {
     match args[1].as_str() {
         "1" => part1(80),
         "2" => part2(256),
-        _ => println!("Invalid option"),
+        _ => {
+            println!("Invalid option");
+            0
+        }
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(385391, part1(80));
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(1728611055389, part2(256));
     }
 }

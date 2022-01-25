@@ -1,10 +1,10 @@
-use std::env;
 use rayon::prelude::*;
+use std::env;
 
 use aoc::read_lines;
 
 fn read_input() -> Vec<u32> {
-    read_lines()
+    read_lines("7")
         .next()
         .unwrap()
         .split(',')
@@ -12,17 +12,19 @@ fn read_input() -> Vec<u32> {
         .collect()
 }
 
-pub fn part1() {
+pub fn part1() -> u32 {
     let positions = read_input();
     let (&a, &b) = (
         positions.iter().min().unwrap(),
         positions.iter().max().unwrap(),
     );
-    let dist_min = (a..b).into_par_iter()
+    let dist_min = (a..b)
+        .into_par_iter()
         .map(|p| distance_simple(&positions, p))
         .min()
         .unwrap();
     println!("{dist_min}");
+    dist_min
 }
 
 fn distance_simple(positions: &[u32], t: u32) -> u32 {
@@ -32,7 +34,7 @@ fn distance_simple(positions: &[u32], t: u32) -> u32 {
         .sum::<u32>()
 }
 
-pub fn part2() {
+pub fn part2() -> u32 {
     let positions = read_input();
     let (&a, &b) = (
         positions.iter().min().unwrap(),
@@ -43,11 +45,13 @@ pub fn part2() {
         distances[i] = distances[i - 1] + i as u32;
     }
 
-    let dist_min = (a..b).into_par_iter()
+    let dist_min = (a..b)
+        .into_par_iter()
         .map(|p| distance_exp(&positions, p, &distances))
         .min()
         .unwrap();
     println!("{dist_min}");
+    dist_min
 }
 
 fn distance_exp(positions: &[u32], t: u32, distances: &[u32]) -> u32 {
@@ -65,6 +69,24 @@ fn main() {
     match part.as_str() {
         "1" => part1(),
         "2" => part2(),
-        _ => println!("Invalid option"),
+        _ => {
+            println!("Invalid option");
+            0u32
+        }
+    };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(341534, part1());
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(93397632, part2());
     }
 }
