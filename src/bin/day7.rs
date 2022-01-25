@@ -1,4 +1,5 @@
 use std::env;
+use rayon::prelude::*;
 
 use aoc::read_lines;
 
@@ -17,7 +18,10 @@ pub fn part1() {
         positions.iter().min().unwrap(),
         positions.iter().max().unwrap(),
     );
-    let dist_min = (a..b).map(|p| distance_simple(&positions, p)).min().unwrap();
+    let dist_min = (a..b).into_par_iter()
+        .map(|p| distance_simple(&positions, p))
+        .min()
+        .unwrap();
     println!("{dist_min}");
 }
 
@@ -36,10 +40,13 @@ pub fn part2() {
     );
     let mut distances = vec![0u32; b as usize + 1];
     for i in 1..(b as usize + 1) {
-        distances[i] = distances[i-1] + i as u32;
+        distances[i] = distances[i - 1] + i as u32;
     }
 
-    let dist_min = (a..b).map(|p| distance_exp(&positions, p, &distances)).min().unwrap();
+    let dist_min = (a..b).into_par_iter()
+        .map(|p| distance_exp(&positions, p, &distances))
+        .min()
+        .unwrap();
     println!("{dist_min}");
 }
 
