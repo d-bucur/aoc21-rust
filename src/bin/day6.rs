@@ -1,4 +1,4 @@
-use std::{thread, collections::HashMap};
+use std::{collections::HashMap, thread};
 
 use aoc::read_lines;
 
@@ -66,12 +66,12 @@ fn part2(days: u32) {
                 *new_colony.entry(6).or_insert(0) += count;
                 *new_colony.entry(8).or_insert(0) += count;
             } else {
-                *new_colony.entry(days-1).or_insert(0) += count;
+                *new_colony.entry(days - 1).or_insert(0) += count;
             }
         }
         fish_colony = new_colony;
     }
-    let total: u64 = fish_colony.iter().map(|e|e.1).sum();
+    let total: u64 = fish_colony.iter().map(|e| e.1).sum();
     println!("{:?}", fish_colony);
     println!("{total}");
 }

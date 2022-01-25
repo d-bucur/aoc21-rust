@@ -1,5 +1,6 @@
-use aoc::Vec2d;
-use std::collections::HashMap;
+use std::{collections::HashMap, env};
+
+use aoc::{read_lines, Vec2d};
 
 #[derive(Debug)]
 pub struct BingoBoard {
@@ -89,5 +90,54 @@ pub fn read_boards(input_it: impl Iterator<Item = String>) -> HashMap<usize, Bin
     boards
 }
 
-#[allow(dead_code)]
-fn main() {}
+pub fn part1() {
+    let mut it = read_lines();
+    let numbers = read_numbers(&mut it);
+    let mut boards = read_boards(it);
+
+    for num in numbers {
+        for (_, board) in boards.iter_mut() {
+            if board.mark(num) {
+                println!("Bingo! {}", num * board.score);
+                return;
+            }
+        }
+    }
+}
+
+pub fn part2() {
+    let mut it = read_lines();
+    let numbers = read_numbers(&mut it);
+    let mut boards = read_boards(it);
+
+    for num in numbers {
+        let mut removal = Vec::new();
+        let board_it = boards.iter_mut();
+        for (id, board) in board_it {
+            if board.mark(num) {
+                removal.push(*id);
+            }
+        }
+        if boards.len() == 1 && removal.len() > 0 {
+            let score = boards.iter().next().unwrap().1.score;
+            println!(
+                "Last Bingo! on {num}. Unmaked: {score}. Final score: {}",
+                score * num
+            );
+            return;
+        }
+        for i in removal.iter() {
+            // println!("Bingo! on {num}. Removing board {i}. Remaining boards {}", boards.len());
+            boards.remove(i);
+        }
+    }
+}
+
+fn main() {
+    let part = env::args().nth(1).unwrap();
+    match part.as_str() {
+        "1" => part1(),
+        "2" => part2(),
+        _ => println!("Invalid option"),
+    }
+}

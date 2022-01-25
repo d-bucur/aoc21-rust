@@ -1,7 +1,36 @@
-use aoc::read_lines;
-use std::collections::HashSet;
+use std::{collections::HashSet, env};
 
-pub fn main() {
+use aoc::read_lines;
+
+pub fn part1() {
+    let length = 12;
+    let mut total = 0u32;
+    let mut ones = vec![0u32; length];
+
+    for line in read_lines() {
+        for (i, d) in line.chars().enumerate() {
+            if d == '1' {
+                ones[i] += 1;
+            }
+        }
+        total += 1;
+    }
+
+    let half_total = total / 2;
+    let mut gamma = 0u32;
+    let mut epsilon = 0u32;
+    for (i, v) in ones.iter().rev().enumerate() {
+        let d = 2u32.pow(i as u32);
+        if *v > half_total {
+            gamma += d;
+        } else {
+            epsilon += d;
+        }
+    }
+    println!("{} = gamma: {gamma} * epsilon: {epsilon}", gamma * epsilon);
+}
+
+pub fn part2() {
     let length = 12;
     let mut all_nums: Vec<String> = Vec::new();
     let mut oxygen_nums = HashSet::new();
@@ -63,4 +92,13 @@ fn divide(
         }
     }
     (zeroes, ones)
+}
+
+fn main() {
+    let part = env::args().nth(1).unwrap();
+    match part.as_str() {
+        "1" => part1(),
+        "2" => part2(),
+        _ => println!("Invalid option"),
+    }
 }
