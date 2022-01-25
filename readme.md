@@ -16,3 +16,20 @@ Older files have different binaries for different parts
 cat inputs/day1.input | cargo run --bin day1p2
 ```
 
+# Benchmark
+
+[Results](results.md)
+
+**Prerequisites**: install [hyperfine](https://github.com/sharkdp/hyperfine)
+
+```
+./benchmark all
+```
+
+To execute all benchmarks and create the markdown table
+
+```
+./benchmark {day} {part}
+```
+
+To benchmark only a specific solution
