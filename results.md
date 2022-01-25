@@ -1,14 +1,16 @@
 | Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
 |:---|---:|---:|---:|---:|
-| `cat inputs/day1.input \| ./target/release/day1 1` | 1.1 ± 0.3 | 0.8 | 6.6 | 1.00 ± 0.30 |
-| `cat inputs/day1.input \| ./target/release/day1 2` | 1.1 ± 0.1 | 0.8 | 2.2 | 1.00 |
-| `cat inputs/day2.input \| ./target/release/day2 1` | 2.3 ± 0.2 | 2.0 | 3.9 | 2.17 ± 0.35 |
-| `cat inputs/day2.input \| ./target/release/day2 2` | 2.3 ± 0.2 | 2.0 | 4.3 | 2.18 ± 0.36 |
-| `cat inputs/day3.input \| ./target/release/day3 1` | 1.1 ± 0.3 | 0.9 | 6.7 | 1.05 ± 0.33 |
-| `cat inputs/day3.input \| ./target/release/day3 2` | 1.5 ± 0.3 | 1.3 | 6.2 | 1.47 ± 0.34 |
-| `cat inputs/day4.input \| ./target/release/day4 1` | 1.3 ± 0.3 | 1.1 | 6.6 | 1.28 ± 0.37 |
-| `cat inputs/day4.input \| ./target/release/day4 2` | 1.4 ± 0.2 | 1.2 | 6.8 | 1.36 ± 0.28 |
-| `cat inputs/day5.input \| ./target/release/day5 1` | 4.6 ± 0.5 | 3.6 | 6.7 | 4.31 ± 0.78 |
-| `cat inputs/day5.input \| ./target/release/day5 2` | 5.2 ± 0.7 | 4.1 | 7.9 | 4.92 ± 0.95 |
-| `cat inputs/day6.input \| ./target/release/day6 1` | 4.0 ± 0.4 | 3.2 | 9.3 | 3.79 ± 0.67 |
-| `cat inputs/day6.input \| ./target/release/day6 2` | 1.2 ± 0.2 | 0.9 | 2.3 | 1.10 ± 0.21 |
+| [day 1 part 1](/src/bin/day1.rs) | 1.1 ± 0.1 | 1.0 | 3.1 | 1.15 ± 0.17 |
+| [day 1 part 2](/src/bin/day1.rs) | 1.1 ± 0.1 | 1.0 | 1.9 | 1.14 ± 0.16 |
+| [day 2 part 1](/src/bin/day2.rs) | 2.4 ± 0.1 | 2.3 | 3.9 | 2.49 ± 0.28 |
+| [day 2 part 2](/src/bin/day2.rs) | 2.4 ± 0.1 | 2.2 | 3.1 | 2.47 ± 0.27 |
+| [day 3 part 1](/src/bin/day3.rs) | 1.1 ± 0.1 | 1.0 | 2.3 | 1.18 ± 0.17 |
+| [day 3 part 2](/src/bin/day3.rs) | 1.6 ± 0.1 | 1.5 | 2.4 | 1.65 ± 0.19 |
+| [day 4 part 1](/src/bin/day4.rs) | 1.4 ± 0.2 | 1.2 | 5.9 | 1.43 ± 0.22 |
+| [day 4 part 2](/src/bin/day4.rs) | 1.5 ± 0.1 | 1.4 | 2.8 | 1.56 ± 0.21 |
+| [day 5 part 1](/src/bin/day5.rs) | 4.0 ± 0.3 | 3.7 | 5.0 | 4.18 ± 0.54 |
+| [day 5 part 2](/src/bin/day5.rs) | 4.6 ± 0.3 | 4.3 | 6.4 | 4.82 ± 0.59 |
+| [day 6 part 1](/src/bin/day6.rs) | 3.9 ± 0.2 | 3.4 | 5.3 | 4.12 ± 0.49 |
+| [day 6 part 2](/src/bin/day6.rs) | 1.2 ± 0.1 | 1.1 | 2.9 | 1.26 ± 0.17 |
+| [day 7 part 1](/src/bin/day7.rs) | 1.4 ± 0.1 | 1.2 | 2.8 | 1.42 ± 0.18 |
+| [day 7 part 2](/src/bin/day7.rs) | 1.0 ± 0.1 | 0.9 | 1.7 | 1.00 |
