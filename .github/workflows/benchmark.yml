@@ -3,9 +3,8 @@ name: benchmark results
 on:
   push:
     branches: [ main ]
-    paths:
-      - '**.rs'
-      - '**.toml'
+    paths-ignore:
+      - '**.md'
 
 env:
   CARGO_TERM_COLOR: always
