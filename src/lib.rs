@@ -17,6 +17,7 @@ pub fn lines_iter(fin: impl Read) -> impl Iterator<Item = String> {
 pub struct Vec2d<T> {
     pub nums: Vec<T>,
     pub width: usize,
+    pub height: usize,
 }
 
 #[allow(dead_code)]
@@ -28,11 +29,20 @@ where
         Vec2d {
             nums: vec![init; width * height],
             width,
+            height
         }
     }
 
     pub fn at(&self, x: usize, y: usize) -> T {
         self.nums[y * self.width + x].clone()
+    }
+
+    pub fn safe_at(&self, x: i32, y: i32) -> Option<T> {
+        if x >= 0 && x < self.width as i32 && y >= 0 && y < self.height as i32 {
+            Some(self.nums[y as usize * self.width + x as usize].clone())
+        } else {
+            None
+        }
     }
 
     pub fn set(&mut self, x: usize, y: usize, val: T) {
@@ -43,7 +53,7 @@ where
         self.width
     }
     pub fn get_height(&self) -> usize {
-        self.nums.len() / self.width
+        self.height
     }
 }
 
