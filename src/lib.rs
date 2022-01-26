@@ -29,7 +29,7 @@ where
         Vec2d {
             nums: vec![init; width * height],
             width,
-            height
+            height,
         }
     }
 

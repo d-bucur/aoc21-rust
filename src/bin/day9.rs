@@ -14,22 +14,22 @@ fn part1() -> u32 {
     for y in 0..HEIGHT as i32 {
         for x in 0..WIDTH as i32 {
             let current_height = heights.at(x as usize, y as usize);
-            let up = if let Some(adjacent_height) = heights.safe_at(x, y-1) {
+            let up = if let Some(adjacent_height) = heights.safe_at(x, y - 1) {
                 current_height >= adjacent_height
             } else {
                 false
             };
-            let down = if let Some(adjacent_height) = heights.safe_at(x, y+1) {
+            let down = if let Some(adjacent_height) = heights.safe_at(x, y + 1) {
                 current_height >= adjacent_height
             } else {
                 false
             };
-            let left = if let Some(adjacent_height) = heights.safe_at(x-1, y) {
+            let left = if let Some(adjacent_height) = heights.safe_at(x - 1, y) {
                 current_height >= adjacent_height
             } else {
                 false
             };
-            let right = if let Some(adjacent_height) = heights.safe_at(x+1, y) {
+            let right = if let Some(adjacent_height) = heights.safe_at(x + 1, y) {
                 current_height >= adjacent_height
             } else {
                 false
@@ -46,6 +46,7 @@ fn part1() -> u32 {
 }
 
 fn part2() -> u32 {
+    // Implement union find https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf
     0
 }
 
@@ -67,7 +68,7 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        // assert_eq!(493, part1());
+        assert_eq!(504, part1());
     }
 
     #[test]
