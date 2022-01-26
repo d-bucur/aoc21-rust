@@ -112,24 +112,20 @@ pub fn part2() -> u32 {
     let mut boards = read_boards(it);
 
     for num in numbers {
-        let mut removal = Vec::new();
-        let board_it = boards.iter_mut();
-        for (id, board) in board_it {
-            if board.mark(num) {
-                removal.push(*id);
+        let mut score = 0;
+        boards.retain(|_, board| {
+            let won = board.mark(num);
+            if won {
+                score = board.score;
             }
-        }
-        if boards.len() == 1 && removal.len() > 0 {
-            let score = boards.iter().next().unwrap().1.score;
+            !won
+        });
+        if boards.len() == 0 {
             println!(
                 "Last Bingo! on {num}. Unmaked: {score}. Final score: {}",
                 score * num
             );
             return score * num;
-        }
-        for i in removal.iter() {
-            // println!("Bingo! on {num}. Removing board {i}. Remaining boards {}", boards.len());
-            boards.remove(i);
         }
     }
     return 0;
