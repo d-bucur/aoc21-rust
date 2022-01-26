@@ -35,6 +35,9 @@ jobs:
     - name: Run benchmark script
       run: ./benchmark.sh all
 
+    - name: Add disclaimer
+      run: eco "These tests were run on GitHub CI which has lower performance than running locally. Usually local times are 2x faster" >> results.md
+
     - name: Commit and push changes
       run: |
         git config --global user.name "Benchmark bot"
