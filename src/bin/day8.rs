@@ -6,7 +6,7 @@ use aoc::read_lines;
 fn part1() -> u32 {
     let known_lengths: HashSet<usize> = [2, 3, 4, 7].into_iter().collect();
     let mut total = 0;
-    for line in read_lines("08") {
+    for line in read_lines("8") {
         let l: Vec<_> = line.split('|').collect();
         let outputs: Vec<&str> = l[1].split_whitespace().collect();
         for output in outputs {
