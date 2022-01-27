@@ -41,7 +41,7 @@ rules for ambigous:
 */
 
 #[derive(Debug)]
-struct SetCustom(Vec<bool>, String);
+struct SetCustom(Vec<bool>, String); // TODO can replace with integers and i32::count_ones
 
 fn part2() -> u32 {
     let total: usize = read_lines("8")

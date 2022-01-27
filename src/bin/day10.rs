@@ -1,7 +1,15 @@
 use aoc::read_lines;
 
-fn part2() -> u32 {
-    0
+fn part1() -> u64 {
+    let r = process_lines(true).0;
+    println!("{r}");
+    r
+}
+
+fn part2() -> u64 {
+    let r = process_lines(false).1;
+    println!("{r}");
+    r
 }
 
 enum Bracket {
@@ -11,8 +19,9 @@ enum Bracket {
     Angular,
 }
 
-fn part1() -> u32 {
-    let mut total = 0;
+fn process_lines(skip_completion_score: bool) -> (u64, u64) {
+    let mut invalid_score = 0;
+    let mut completion_scores = Vec::new();
     for line in read_lines("10") {
         let mut skip_line = false;
         let mut open: Vec<Bracket> = Default::default();
@@ -25,7 +34,7 @@ fn part1() -> u32 {
                 ')' => {
                     if let Some(Bracket::Round) = open.pop() {
                     } else {
-                        total += 3;
+                        invalid_score += 3;
                         skip_line = true;
                         break;
                     }
@@ -33,7 +42,7 @@ fn part1() -> u32 {
                 ']' => {
                     if let Some(Bracket::Square) = open.pop() {
                     } else {
-                        total += 57;
+                        invalid_score += 57;
                         skip_line = true;
                         break;
                     }
@@ -41,7 +50,7 @@ fn part1() -> u32 {
                 '>' => {
                     if let Some(Bracket::Angular) = open.pop() {
                     } else {
-                        total += 25137;
+                        invalid_score += 25137;
                         skip_line = true;
                         break;
                     }
@@ -49,7 +58,7 @@ fn part1() -> u32 {
                 '}' => {
                     if let Some(Bracket::Curly) = open.pop() {
                     } else {
-                        total += 1197;
+                        invalid_score += 1197;
                         skip_line = true;
                         break;
                     }
@@ -60,9 +69,27 @@ fn part1() -> u32 {
         if skip_line {
             continue;
         }
+        if skip_completion_score {
+            continue;
+        }
+        let mut incomplete_score: u64 = 0;
+        while open.len() > 0 {
+            let new_score = match open.pop().unwrap() {
+                Bracket::Round => 1,
+                Bracket::Square => 2,
+                Bracket::Curly => 3,
+                Bracket::Angular => 4,
+            };
+            incomplete_score = incomplete_score * 5 + new_score;
+        }
+        completion_scores.push(incomplete_score);
     }
-    println!("{total}");
-    total
+    let mut completion_score = 0;
+    if !skip_completion_score {
+        completion_scores.sort_unstable();
+        completion_score = completion_scores[completion_scores.len() / 2];
+    }
+    (invalid_score, completion_score)
 }
 
 fn main() {
@@ -72,7 +99,7 @@ fn main() {
         "2" => part2(),
         _ => {
             println!("Invalid option");
-            0u32
+            0u64
         }
     };
 }
@@ -88,6 +115,6 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        // assert_eq!(1010460, part2());
+        assert_eq!(1190420163, part2());
     }
 }
