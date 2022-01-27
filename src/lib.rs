@@ -76,9 +76,17 @@ where
 
     pub fn neighbors(&self, x: usize, y: usize) -> Vec2dNeighborsIterator {
         let up = if y > 0 { Some(Point((x, y - 1))) } else { None };
-        let down = if y < self.width - 1 { Some(Point((x, y + 1))) } else { None };
+        let down = if y < self.width - 1 {
+            Some(Point((x, y + 1)))
+        } else {
+            None
+        };
         let left = if x > 0 { Some(Point((x - 1, y))) } else { None };
-        let right = if x < self.height - 1 { Some(Point((x + 1, y))) } else { None };
+        let right = if x < self.height - 1 {
+            Some(Point((x + 1, y)))
+        } else {
+            None
+        };
         Vec2dNeighborsIterator {
             directions: [up, down, left, right],
             i: 0,
@@ -86,10 +94,26 @@ where
     }
 
     pub fn diagonals(&self, x: usize, y: usize) -> Vec2dNeighborsIterator {
-        let d1 = if y > 0 && x > 0 { Some(Point((x - 1, y - 1))) } else { None };
-        let d2 = if x < self.width - 1 && y < self.width - 1 { Some(Point((x + 1, y + 1))) } else { None };
-        let d3 = if x > 0 && y < self.width - 1 { Some(Point((x - 1, y + 1))) } else { None };
-        let d4 = if x < self.height - 1 && y > 0 { Some(Point((x + 1, y - 1))) } else { None };
+        let d1 = if y > 0 && x > 0 {
+            Some(Point((x - 1, y - 1)))
+        } else {
+            None
+        };
+        let d2 = if x < self.width - 1 && y < self.width - 1 {
+            Some(Point((x + 1, y + 1)))
+        } else {
+            None
+        };
+        let d3 = if x > 0 && y < self.width - 1 {
+            Some(Point((x - 1, y + 1)))
+        } else {
+            None
+        };
+        let d4 = if x < self.height - 1 && y > 0 {
+            Some(Point((x + 1, y - 1)))
+        } else {
+            None
+        };
         Vec2dNeighborsIterator {
             directions: [d1, d2, d3, d4],
             i: 0,

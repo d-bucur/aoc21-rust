@@ -1,4 +1,4 @@
-use aoc::{read_lines, Vec2d, Point};
+use aoc::{read_lines, Point, Vec2d};
 
 const WIDTH: usize = 10;
 const HEIGHT: usize = 10;
@@ -17,23 +17,32 @@ fn parse_input() -> Vec2d<u8> {
     heights
 }
 
-fn simulate(steps: u32) -> Option<u64> {
+fn simulate(steps: u32, check_sync_flash: bool) -> Option<u64> {
     let mut grid = parse_input();
-    let mut flashes: u64 = 0;
-    for _cycle in 0..steps {
+    let mut total_flashes: u64 = 0;
+    let total_cells = (WIDTH * HEIGHT) as u64;
+
+    for cycle in 0..steps {
+        let mut step_flashes = 0;
         for (x, y) in grid.pos_iter() {
-            increment_energy(&mut grid, x, y, &mut flashes);
+            increment_energy(&mut grid, x, y, &mut step_flashes);
         }
         for energy in grid.nums.iter_mut() {
             if *energy >= 10 {
                 *energy = 0;
             }
         }
+        // println!("Step {cycle}: {step_flashes}");
+        if check_sync_flash && step_flashes == total_cells {
+            println!("{}", cycle + 1);
+            return Some(cycle as u64 + 1);
+        }
+        total_flashes += step_flashes;
         // println!("Step {cycle}");
         // println!("{grid:?}");
     }
-    println!("{flashes}");
-    Some(flashes)
+    println!("{total_flashes}");
+    Some(total_flashes)
 }
 
 fn increment_energy(grid: &mut Vec2d<u8>, x: usize, y: usize, flashes: &mut u64) {
@@ -48,11 +57,11 @@ fn increment_energy(grid: &mut Vec2d<u8>, x: usize, y: usize, flashes: &mut u64)
 }
 
 fn part1() -> Option<u64> {
-    simulate(100)
+    simulate(100, false)
 }
 
 fn part2() -> Option<u64> {
-    None
+    simulate(u32::max_value(), true)
 }
 
 fn main() {
@@ -66,7 +75,6 @@ fn main() {
     };
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -78,6 +86,6 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        // assert_eq!(1190420163, part2());
+        assert_eq!(382, part2().unwrap());
     }
 }
