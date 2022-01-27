@@ -23,27 +23,16 @@ fn part1() -> u32 {
     for y in 0..HEIGHT as i32 {
         for x in 0..WIDTH as i32 {
             let current_height = heights.at(x as usize, y as usize);
-            let up = if let Some(adjacent_height) = heights.safe_at(x, y - 1) {
-                current_height >= adjacent_height
-            } else {
-                false
-            };
-            let down = if let Some(adjacent_height) = heights.safe_at(x, y + 1) {
-                current_height >= adjacent_height
-            } else {
-                false
-            };
-            let left = if let Some(adjacent_height) = heights.safe_at(x - 1, y) {
-                current_height >= adjacent_height
-            } else {
-                false
-            };
-            let right = if let Some(adjacent_height) = heights.safe_at(x + 1, y) {
-                current_height >= adjacent_height
-            } else {
-                false
-            };
-            if !(up || down || left || right) {
+            let mut local_min = true;
+            for (ni, nj) in vec![(x + 1, y), (x, y + 1), (x - 1, y), (x, y - 1)] {
+                if let Some(adjacent_height) = heights.safe_at(ni, nj) {
+                    if current_height >= adjacent_height {
+                        local_min = false;
+                        break;
+                    }
+                }
+            }
+            if local_min {
                 // println!("local low: {x},{y} = {current_height}");
                 total += current_height as u32 + 1;
             }
