@@ -88,7 +88,7 @@ where
             None
         };
         Vec2dNeighborsIterator {
-            directions: [up, down, left, right],
+            directions: [up, left, right, down],
             i: 0,
         }
     }
@@ -115,7 +115,7 @@ where
             None
         };
         Vec2dNeighborsIterator {
-            directions: [d1, d2, d3, d4],
+            directions: [d1, d4, d3, d2],
             i: 0,
         }
     }
