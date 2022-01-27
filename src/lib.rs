@@ -49,6 +49,13 @@ where
         self.nums[y * self.width + x] = val;
     }
 
+    pub fn get_and_set(&mut self, x: usize, y: usize, val: T) -> T {
+        let idx = y * self.width + x;
+        let previous = self.nums[idx].clone();
+        self.nums[idx] = val;
+        previous
+    }
+
     pub fn get_width(&self) -> usize {
         self.width
     }

@@ -35,7 +35,7 @@ jobs:
       run: ./benchmark.sh all
 
     - name: Add disclaimer
-      run: echo "\nThese tests were run on GitHub CI which has lower performance than running locally. Usually local times are 2x faster" >> results.md
+      run: echo -e "\nThese tests were run on GitHub CI which has lower performance than running locally. Local times are around 2x faster" >> results.md
 
     - name: Commit and push changes
       run: |
