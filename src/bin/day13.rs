@@ -8,7 +8,9 @@ const UNSET: u8 = 0;
 fn part1() -> Option<usize> {
     let (mut dots, folds) = parse_input()?;
     for (axis, along) in folds.into_iter().take(1) {
-        fold(&mut dots, axis, along);
+        let width = dots.get_width();
+        let height = dots.get_height();
+        fold(&mut dots, &axis, along, width, height);
     }
     let result = dots
         .pos_iter()
@@ -23,12 +25,12 @@ fn part2() -> Option<usize> {
     let mut width = dots.get_width();
     let mut height = dots.get_height();
     for (axis, along) in folds.into_iter() {
+        fold(&mut dots, &axis, along, width, height);
         if axis == "x" {
             width /= 2;
         } else {
             height /= 2;
         }
-        fold(&mut dots, axis, along);
     }
     for y in 0..height {
         for x in 0..width {
@@ -44,10 +46,10 @@ fn part2() -> Option<usize> {
     None
 }
 
-fn fold(dots: &mut Vec2d<u8>, axis: String, along: usize) {
+fn fold(dots: &mut Vec2d<u8>, axis: &String, along: usize, width: usize, height: usize) {
     if axis == "y" {
-        for y in along..dots.get_height() {
-            for x in 0..dots.get_width() {
+        for y in along..height {
+            for x in 0..width {
                 let old = dots.get_and_set(x, y, UNSET);
                 if old == SET {
                     dots.set(x, along - (y - along), SET)
@@ -56,8 +58,8 @@ fn fold(dots: &mut Vec2d<u8>, axis: String, along: usize) {
         }
     }
     if axis == "x" {
-        for y in 0..dots.get_height() {
-            for x in along..dots.get_width() {
+        for y in 0..height {
+            for x in along..width {
                 let old = dots.get_and_set(x, y, UNSET);
                 if old == SET {
                     dots.set(along - (x - along), y, SET)
@@ -83,7 +85,7 @@ fn parse_input() -> Option<(Vec2d<u8>, Vec<(String, usize)>)> {
         .collect();
     let (width, _) = points.iter().max_by_key(|(x, _)| x)?;
     let (_, height) = points.iter().max_by_key(|(_, y)| y)?;
-    println!("{width} x {height}");
+    // println!("{width} x {height}");
     let mut dots = Vec2d::new(*width + 1, *height + 1, UNSET);
     for (x, y) in points {
         dots.set(x, y, SET);
