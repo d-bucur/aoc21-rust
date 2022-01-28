@@ -1,28 +1,30 @@
 | Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
 |:---|---:|---:|---:|---:|
-| [day 1 part 1](/src/bin/day1.rs) | 1.2 ± 0.2 | 0.9 | 5.2 | 1.01 ± 0.18 |
-| [day 1 part 2](/src/bin/day1.rs) | 1.1 ± 0.1 | 0.9 | 2.3 | 1.00 |
-| [day 2 part 1](/src/bin/day2.rs) | 2.7 ± 0.2 | 2.2 | 4.1 | 2.33 ± 0.25 |
-| [day 2 part 2](/src/bin/day2.rs) | 2.7 ± 0.1 | 2.0 | 3.3 | 2.33 ± 0.24 |
-| [day 3 part 1](/src/bin/day3.rs) | 1.2 ± 0.2 | 1.0 | 3.0 | 1.07 ± 0.16 |
-| [day 3 part 2](/src/bin/day3.rs) | 1.8 ± 0.1 | 1.4 | 3.1 | 1.57 ± 0.17 |
-| [day 4 part 1](/src/bin/day4.rs) | 1.5 ± 0.1 | 1.2 | 2.9 | 1.30 ± 0.17 |
-| [day 4 part 2](/src/bin/day4.rs) | 1.6 ± 0.1 | 1.4 | 4.7 | 1.39 ± 0.16 |
-| [day 5 part 1](/src/bin/day5.rs) | 4.5 ± 0.4 | 3.8 | 6.0 | 3.97 ± 0.51 |
-| [day 5 part 2](/src/bin/day5.rs) | 5.4 ± 0.5 | 4.6 | 7.5 | 4.72 ± 0.60 |
-| [day 6 part 1](/src/bin/day6.rs) | 4.4 ± 0.5 | 3.7 | 12.6 | 3.87 ± 0.56 |
-| [day 6 part 2](/src/bin/day6.rs) | 1.3 ± 0.1 | 1.0 | 2.9 | 1.12 ± 0.13 |
-| [day 7 part 1](/src/bin/day7.rs) | 1.6 ± 0.1 | 1.2 | 3.0 | 1.43 ± 0.16 |
-| [day 7 part 2](/src/bin/day7.rs) | 2.5 ± 0.2 | 1.9 | 6.3 | 2.16 ± 0.26 |
-| [day 8 part 1](/src/bin/day8.rs) | 1.2 ± 0.2 | 0.9 | 7.8 | 1.07 ± 0.21 |
-| [day 8 part 2](/src/bin/day8.rs) | 2.5 ± 0.2 | 2.1 | 5.5 | 2.17 ± 0.24 |
-| [day 9 part 1](/src/bin/day9.rs) | 1.4 ± 0.1 | 1.2 | 2.6 | 1.25 ± 0.14 |
-| [day 9 part 2](/src/bin/day9.rs) | 1.6 ± 0.1 | 1.3 | 3.5 | 1.38 ± 0.15 |
-| [day 10 part 1](/src/bin/day10.rs) | 1.1 ± 0.1 | 0.9 | 1.9 | 1.00 ± 0.11 |
-| [day 10 part 2](/src/bin/day10.rs) | 1.2 ± 0.1 | 0.9 | 2.1 | 1.01 ± 0.12 |
-| [day 11 part 1](/src/bin/day11.rs) | 1.2 ± 0.1 | 1.0 | 2.5 | 1.09 ± 0.13 |
-| [day 11 part 2](/src/bin/day11.rs) | 2.0 ± 0.2 | 1.6 | 7.5 | 1.74 ± 0.24 |
-| [day 12 part 1](/src/bin/day12.rs) | 3.5 ± 0.1 | 3.1 | 4.2 | 3.05 ± 0.29 |
-| [day 12 part 2](/src/bin/day12.rs) | 13.0 ± 0.6 | 11.9 | 19.9 | 11.37 ± 1.14 |
+| [day 1 part 1](/src/bin/day1.rs) | 1.0 ± 0.1 | 0.9 | 1.6 | 1.03 ± 0.12 |
+| [day 1 part 2](/src/bin/day1.rs) | 1.0 ± 0.1 | 0.9 | 5.4 | 1.03 ± 0.17 |
+| [day 2 part 1](/src/bin/day2.rs) | 2.3 ± 0.3 | 2.2 | 8.4 | 2.41 ± 0.34 |
+| [day 2 part 2](/src/bin/day2.rs) | 2.3 ± 0.1 | 2.2 | 3.2 | 2.42 ± 0.21 |
+| [day 3 part 1](/src/bin/day3.rs) | 1.0 ± 0.1 | 0.9 | 2.8 | 1.08 ± 0.16 |
+| [day 3 part 2](/src/bin/day3.rs) | 1.5 ± 0.1 | 1.4 | 2.5 | 1.57 ± 0.16 |
+| [day 4 part 1](/src/bin/day4.rs) | 1.2 ± 0.1 | 1.1 | 1.9 | 1.28 ± 0.13 |
+| [day 4 part 2](/src/bin/day4.rs) | 1.4 ± 0.1 | 1.3 | 1.6 | 1.40 ± 0.13 |
+| [day 5 part 1](/src/bin/day5.rs) | 3.9 ± 0.3 | 3.6 | 5.2 | 4.07 ± 0.46 |
+| [day 5 part 2](/src/bin/day5.rs) | 4.6 ± 0.4 | 4.2 | 9.9 | 4.82 ± 0.60 |
+| [day 6 part 1](/src/bin/day6.rs) | 3.7 ± 0.3 | 3.1 | 4.8 | 3.85 ± 0.42 |
+| [day 6 part 2](/src/bin/day6.rs) | 1.1 ± 0.1 | 1.0 | 1.7 | 1.13 ± 0.12 |
+| [day 7 part 1](/src/bin/day7.rs) | 1.4 ± 0.2 | 1.4 | 7.4 | 1.50 ± 0.22 |
+| [day 7 part 2](/src/bin/day7.rs) | 2.1 ± 0.1 | 2.0 | 3.3 | 2.20 ± 0.21 |
+| [day 8 part 1](/src/bin/day8.rs) | 1.1 ± 0.1 | 1.0 | 3.6 | 1.10 ± 0.13 |
+| [day 8 part 2](/src/bin/day8.rs) | 2.2 ± 0.1 | 2.0 | 3.2 | 2.24 ± 0.20 |
+| [day 9 part 1](/src/bin/day9.rs) | 1.2 ± 0.1 | 1.1 | 4.4 | 1.27 ± 0.15 |
+| [day 9 part 2](/src/bin/day9.rs) | 1.3 ± 0.1 | 1.2 | 1.8 | 1.39 ± 0.13 |
+| [day 10 part 1](/src/bin/day10.rs) | 1.0 ± 0.1 | 0.9 | 2.0 | 1.00 |
+| [day 10 part 2](/src/bin/day10.rs) | 1.0 ± 0.1 | 0.9 | 1.4 | 1.01 ± 0.11 |
+| [day 11 part 1](/src/bin/day11.rs) | 1.1 ± 0.1 | 1.0 | 1.7 | 1.11 ± 0.11 |
+| [day 11 part 2](/src/bin/day11.rs) | 1.7 ± 0.1 | 1.6 | 2.6 | 1.79 ± 0.17 |
+| [day 12 part 1](/src/bin/day12.rs) | 3.0 ± 0.1 | 2.9 | 4.4 | 3.17 ± 0.28 |
+| [day 12 part 2](/src/bin/day12.rs) | 10.9 ± 0.2 | 10.7 | 12.4 | 11.36 ± 0.94 |
+| [day 13 part 1](/src/bin/day13.rs) | 6.2 ± 0.1 | 6.1 | 6.7 | 6.43 ± 0.53 |
+| [day 13 part 2](/src/bin/day13.rs) | 11.5 ± 0.1 | 11.4 | 12.1 | 11.95 ± 0.97 |
 
 These tests were run on GitHub CI which has lower performance than running locally. Local times are around 2x faster
