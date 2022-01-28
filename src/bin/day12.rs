@@ -85,13 +85,11 @@ impl Visitor {
         }
     }
 
-    fn start_visit(&self) -> Vec<Vec<usize>> {
+    fn start_visit(&self) -> u64 {
         let start_node = *self.graph.node_to_id.get(&"start".to_string()).unwrap();
         let mut visited: HashMap<usize, u32> = HashMap::new();
         let mut path: Vec<usize> = Vec::new();
-        let mut valid_paths: Vec<Vec<usize>> = Vec::new();
-        self.visit(start_node, &mut visited, &mut path, &mut valid_paths, false);
-        valid_paths
+        self.visit(start_node, &mut visited, &mut path, false)
     }
 
     fn visit(
@@ -99,9 +97,8 @@ impl Visitor {
         current_node: usize,
         visited: &mut HashMap<usize, u32>,
         path: &mut Vec<usize>,
-        valid_paths: &mut Vec<Vec<usize>>,
         visited_twice: bool,
-    ) {
+    ) -> u64 {
         // println!("-------");
         // println!("Current: {current_node}");
         // println!("Path: {path:?}");
@@ -109,14 +106,13 @@ impl Visitor {
         path.push(current_node.clone());
         if self.node_types[current_node] == NodeType::Terminal {
             // println!("Valid path added to result: {path:?}");
-            valid_paths.push(path.clone());
             path.pop();
-            return;
+            return 1;
         }
         let neighbors = self.graph.edges.get(&current_node).unwrap();
         let visited_count = visited.entry(current_node.clone()).or_insert(0u32);
         *visited_count += 1;
-        neighbors.into_iter().for_each(|neigh| {
+        let valid_paths: u64 = neighbors.into_iter().map(|neigh| {
             let neigh_visits = *visited.get(neigh).unwrap_or(&0u32);
             let (should_visit, replace_visited_twice) = match self.node_types[*neigh] {
                 NodeType::Big => (true, false),
@@ -144,19 +140,22 @@ impl Visitor {
                     neigh.clone(),
                     visited,
                     path,
-                    valid_paths,
                     visited_twice || replace_visited_twice,
-                );
+                )
             }
-        });
+            else {
+                0
+            }
+        }).sum();
         // println!("Exiting visit of {current_node}");
         *visited.get_mut(&current_node).unwrap() -= 1;
         path.pop();
+        valid_paths
         // println!("Popped {} from visited", p.unwrap());
     }
 }
 
-fn solve(check_twice: bool) -> Option<usize> {
+fn solve(check_twice: bool) -> Option<u64> {
     let re: Regex = Regex::new(r"(\w+)-(\w+)").unwrap();
     let mut nodes = Graph::new();
     for line in read_lines("12") {
@@ -170,15 +169,15 @@ fn solve(check_twice: bool) -> Option<usize> {
     // println!("{visitor:?}");
     let paths = visitor.start_visit();
     // println!("Valid paths to end: {paths:?}");
-    println!("{}", paths.len());
-    Some(paths.len())
+    println!("{paths}");
+    Some(paths)
 }
 
-fn part1() -> Option<usize> {
+fn part1() -> Option<u64> {
     solve(false)
 }
 
-fn part2() -> Option<usize> {
+fn part2() -> Option<u64> {
     solve(true)
 }
 
