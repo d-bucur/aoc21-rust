@@ -8,7 +8,7 @@ pub fn read_lines(day: &'static str) -> impl Iterator<Item = String> {
     lines_iter(fin)
 }
 
-pub fn lines_iter(fin: impl Read) -> impl Iterator<Item = String> {
+fn lines_iter(fin: impl Read) -> impl Iterator<Item = String> {
     let buffer = BufReader::new(fin);
     let it = buffer.lines().map(|e| e.unwrap());
     it

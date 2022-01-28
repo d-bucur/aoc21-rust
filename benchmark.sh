@@ -8,7 +8,7 @@ format_table() {
 if [ "$1" = "all" ]; then
   hyperfine\
  --warmup 3\
- -P day 1 11\
+ -P day 1 12\
  "./target/release/day{day} 1"\
  "./target/release/day{day} 2"\
  --export-markdown results.md
