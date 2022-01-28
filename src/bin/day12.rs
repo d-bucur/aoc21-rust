@@ -6,7 +6,7 @@ use regex::Regex;
 
 #[derive(Debug)]
 struct Graph<T> {
-    edges: HashMap<usize, Vec<usize>>,
+    edges: Vec<Vec<usize>>,
     node_to_id: HashMap<T, usize>,
     id_to_node: HashMap<usize, T>,
 }
@@ -32,10 +32,12 @@ where
     fn add_edge_directed(&mut self, start: T, end: T) {
         let start_id = self.insert_mapping(start);
         let end_id = self.insert_mapping(end);
-        self.edges
-            .entry(start_id)
-            .or_insert(Vec::new())
-            .push(end_id);
+
+        let size_max = std::cmp::max(start_id, end_id);
+        if size_max >= self.edges.len() {
+            self.edges.resize(size_max + 1, Default::default());
+        }
+        self.edges[start_id].push(end_id);
     }
 
     fn insert_mapping(&mut self, edge: T) -> usize {
@@ -110,7 +112,7 @@ impl Visitor {
             // println!("Valid path added to result: {:?}", self.graph.ids_to_nodes(path));
             return 1;
         }
-        let neighbors = self.graph.edges.get(&current_node).unwrap();
+        let neighbors = &self.graph.edges[current_node];
         visited[current_node] += 1;
         let valid_paths: u64 = neighbors.into_iter().map(|neigh| {
             let neigh_visits = visited[*neigh];
