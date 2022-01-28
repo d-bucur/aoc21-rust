@@ -52,7 +52,9 @@ where
     }
 
     fn ids_to_nodes(&self, ids: &Vec<usize>) -> Vec<T> {
-        ids.into_iter().map(|i| self.id_to_node.get(i).unwrap().clone()).collect()
+        ids.into_iter()
+            .map(|i| self.id_to_node.get(i).unwrap().clone())
+            .collect()
     }
 }
 
@@ -98,12 +100,7 @@ impl Visitor {
         self.visit(start_node, &mut visited, false)
     }
 
-    fn visit(
-        &self,
-        current_node: usize,
-        visited: &mut Vec<usize>,
-        visited_twice: bool,
-    ) -> u64 {
+    fn visit(&self, current_node: usize, visited: &mut Vec<usize>, visited_twice: bool) -> u64 {
         // println!("-------");
         // println!("Current: {}", self.graph.id_to_node[&current_node]);
         // println!("Path: {:?}", self.graph.ids_to_nodes(path));
@@ -114,40 +111,38 @@ impl Visitor {
         }
         let neighbors = &self.graph.edges[current_node];
         visited[current_node] += 1;
-        let valid_paths: u64 = neighbors.into_iter().map(|neigh| {
-            let neigh_visits = visited[*neigh];
-            let (should_visit, replace_visited_twice) = match self.node_types[*neigh] {
-                NodeType::Big => (true, false),
-                NodeType::Small => {
-                    if !self.check_twice {
-                        (neigh_visits == 0, false)
-                    } else {
-                        if neigh_visits == 0 {
-                            (true, false)
+        let valid_paths: u64 = neighbors
+            .into_iter()
+            .map(|neigh| {
+                let neigh_visits = visited[*neigh];
+                let (should_visit, replace_visited_twice) = match self.node_types[*neigh] {
+                    NodeType::Big => (true, false),
+                    NodeType::Small => {
+                        if !self.check_twice {
+                            (neigh_visits == 0, false)
                         } else {
-                            // trying to visit small case twice
-                            if visited_twice {
-                                (false, true)
+                            if neigh_visits == 0 {
+                                (true, false)
                             } else {
-                                (true, true)
+                                // trying to visit small case twice
+                                if visited_twice {
+                                    (false, true)
+                                } else {
+                                    (true, true)
+                                }
                             }
                         }
                     }
+                    NodeType::Terminal => (neigh_visits == 0, false),
+                    NodeType::Start => (false, false),
+                };
+                if should_visit {
+                    self.visit(*neigh, visited, visited_twice || replace_visited_twice)
+                } else {
+                    0
                 }
-                NodeType::Terminal => (neigh_visits == 0, false),
-                NodeType::Start => (false, false),
-            };
-            if should_visit {
-                self.visit(
-                    *neigh,
-                    visited,
-                    visited_twice || replace_visited_twice,
-                )
-            }
-            else {
-                0
-            }
-        }).sum();
+            })
+            .sum();
         // println!("Exiting visit of {current_node}");
         visited[current_node] -= 1;
         valid_paths

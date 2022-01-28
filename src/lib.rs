@@ -39,6 +39,10 @@ where
         self.nums[y * self.width + x].clone()
     }
 
+    pub fn at_mut(&mut self, x: usize, y: usize) -> Option<&mut T> {
+        Some(&mut self.nums[y * self.width + x])
+    }
+
     pub fn safe_at(&self, x: i32, y: i32) -> Option<T> {
         if x >= 0 && x < self.width as i32 && y >= 0 && y < self.height as i32 {
             Some(self.nums[y as usize * self.width + x as usize].clone())
@@ -51,6 +55,7 @@ where
         self.nums[y * self.width + x] = val;
     }
 
+    /// Get the current value in the position and set the new one to val
     pub fn get_and_set(&mut self, x: usize, y: usize, val: T) -> T {
         let idx = y * self.width + x;
         let previous = self.nums[idx].clone();
