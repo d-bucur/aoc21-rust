@@ -16,6 +16,7 @@ pub mod day6;
 pub mod day7;
 pub mod day8;
 pub mod day9;
+pub mod day14;
 
 pub fn read_lines(day: &'static str) -> impl Iterator<Item = String> {
     let fin = std::fs::File::open(format!("inputs/day{}.input", day)).unwrap();

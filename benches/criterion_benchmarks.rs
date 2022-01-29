@@ -186,6 +186,20 @@ fn criterion_benchmark(c: &mut Criterion) {
             day13::part2()
         })
     });
+
+    c.bench_function("day14 part1", |b| {
+        b.iter(|| {
+            let _gag = Gag::stdout().unwrap();
+            day14::part1()
+        })
+    });
+
+    c.bench_function("day14 part2", |b| {
+        b.iter(|| {
+            let _gag = Gag::stdout().unwrap();
+            day14::part2()
+        })
+    });
 }
 
 // criterion_group!(benches, criterion_benchmark);
