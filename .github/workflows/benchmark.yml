@@ -26,21 +26,27 @@ jobs:
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
     - uses: actions/checkout@v2
+
     - name: Install hyperfine
       run: |
         wget https://github.com/sharkdp/hyperfine/releases/download/v1.12.0/hyperfine_1.12.0_amd64.deb
         sudo dpkg -i hyperfine_1.12.0_amd64.deb
 
-    - name: Run benchmark script
-      run: ./benchmark.sh all
+    - name: Install valgrind
+      run: sudo apt install valgrind
 
-    - name: Add disclaimer
-      run: echo -e "\nThese tests were run on GitHub CI which has lower performance than running locally. Local times are around 2x faster" >> results.md
+    - name: Run hyperfine benchmark
+      run: |
+        ./benchmark.sh hyperfine all
+        echo -e "\nThese tests were run on GitHub CI which has lower performance than running locally. Local times are around 2x faster" >> results.md
+
+    - name: Run iai benchmark
+      run: ./benchmark.sh iai > iai_results.txt
 
     - name: Commit and push changes
       run: |
-        git config --global user.name "Benchmark bot"
+        git config --global user.name "benchmark bot"
         git config --global user.email "benchmarks@bot.com"
-        git add results.md
+        git add results.md iai_results.txt
         git commit -m "Update benchmark results"
         git push
