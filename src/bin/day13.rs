@@ -7,15 +7,25 @@ const UNSET: u8 = 0;
 
 fn part1() -> Option<usize> {
     let (mut dots, folds) = parse_input()?;
+    let mut width = dots.get_width();
+    let mut height = dots.get_height();
     for (axis, along) in folds.into_iter().take(1) {
-        let width = dots.get_width();
-        let height = dots.get_height();
         fold(&mut dots, &axis, along, width, height);
+        if axis == "x" {
+            width /= 2;
+        } else {
+            height /= 2;
+        }
     }
-    let result = dots
-        .pos_iter()
-        .filter(|(x, y)| dots.at(*x, *y) == SET)
-        .count();
+    let mut result = 0usize;
+    for y in 0..height {
+        for x in 0..width {
+            let dot = dots.at(x, y);
+            if dot == SET {
+                result += 1;
+            }
+        }
+    }
     println!("{result}");
     Some(result)
 }
