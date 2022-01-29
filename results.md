@@ -1,30 +1,30 @@
 | Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
 |:---|---:|---:|---:|---:|
-| [day 1 part 1](/src/bin/day1.rs) | 1.5 ± 0.7 | 0.8 | 10.7 | 1.29 ± 1.08 |
-| [day 1 part 2](/src/bin/day1.rs) | 1.5 ± 0.8 | 0.9 | 10.9 | 1.29 ± 1.11 |
-| [day 2 part 1](/src/bin/day2.rs) | 3.2 ± 1.0 | 2.4 | 11.6 | 2.76 ± 2.09 |
-| [day 2 part 2](/src/bin/day2.rs) | 3.2 ± 1.0 | 2.4 | 13.1 | 2.72 ± 2.06 |
-| [day 3 part 1](/src/bin/day3.rs) | 1.5 ± 0.7 | 0.9 | 9.0 | 1.28 ± 1.08 |
-| [day 3 part 2](/src/bin/day3.rs) | 2.2 ± 0.9 | 1.5 | 11.5 | 1.85 ± 1.48 |
-| [day 4 part 1](/src/bin/day4.rs) | 1.8 ± 0.7 | 1.2 | 9.5 | 1.50 ± 1.20 |
-| [day 4 part 2](/src/bin/day4.rs) | 1.9 ± 0.8 | 1.3 | 9.5 | 1.61 ± 1.31 |
-| [day 5 part 1](/src/bin/day5.rs) | 5.6 ± 1.5 | 4.2 | 15.1 | 4.81 ± 3.56 |
-| [day 5 part 2](/src/bin/day5.rs) | 6.6 ± 1.5 | 4.8 | 16.7 | 5.61 ± 4.09 |
-| [day 6 part 1](/src/bin/day6.rs) | 5.7 ± 1.5 | 3.7 | 17.3 | 4.83 ± 3.59 |
-| [day 6 part 2](/src/bin/day6.rs) | 1.6 ± 0.7 | 1.0 | 7.2 | 1.32 ± 1.07 |
-| [day 7 part 1](/src/bin/day7.rs) | 2.0 ± 0.9 | 1.5 | 9.3 | 1.75 ± 1.43 |
-| [day 7 part 2](/src/bin/day7.rs) | 2.9 ± 1.0 | 2.3 | 11.6 | 2.51 ± 1.94 |
-| [day 8 part 1](/src/bin/day8.rs) | 1.5 ± 0.7 | 0.8 | 9.4 | 1.28 ± 1.08 |
-| [day 8 part 2](/src/bin/day8.rs) | 2.8 ± 1.0 | 1.8 | 11.7 | 2.42 ± 1.88 |
-| [day 9 part 1](/src/bin/day9.rs) | 1.4 ± 0.7 | 0.7 | 9.9 | 1.20 ± 1.03 |
-| [day 9 part 2](/src/bin/day9.rs) | 1.5 ± 0.7 | 0.8 | 8.4 | 1.30 ± 1.10 |
-| [day 10 part 1](/src/bin/day10.rs) | 1.2 ± 0.8 | 0.4 | 10.3 | 1.00 |
-| [day 10 part 2](/src/bin/day10.rs) | 1.2 ± 0.8 | 0.4 | 11.0 | 1.01 ± 1.00 |
-| [day 11 part 1](/src/bin/day11.rs) | 1.2 ± 0.7 | 0.5 | 7.7 | 1.04 ± 0.91 |
-| [day 11 part 2](/src/bin/day11.rs) | 2.0 ± 1.0 | 1.1 | 12.2 | 1.71 ± 1.45 |
-| [day 12 part 1](/src/bin/day12.rs) | 3.5 ± 1.1 | 2.3 | 13.7 | 3.00 ± 2.27 |
-| [day 12 part 2](/src/bin/day12.rs) | 12.4 ± 2.0 | 9.6 | 23.8 | 10.56 ± 7.51 |
-| [day 13 part 1](/src/bin/day13.rs) | 3.7 ± 1.1 | 2.3 | 12.0 | 3.16 ± 2.39 |
-| [day 13 part 2](/src/bin/day13.rs) | 3.7 ± 1.0 | 2.4 | 12.4 | 3.12 ± 2.31 |
+| `./target/release/aoc 1 1` | 1.4 ± 0.4 | 0.8 | 6.3 | 1.01 ± 0.47 |
+| `./target/release/aoc 1 2` | 1.6 ± 0.6 | 1.0 | 8.3 | 1.13 ± 0.55 |
+| `./target/release/aoc 2 1` | 3.1 ± 0.8 | 2.3 | 9.3 | 2.24 ± 0.93 |
+| `./target/release/aoc 2 2` | 2.9 ± 0.8 | 1.9 | 12.3 | 2.07 ± 0.90 |
+| `./target/release/aoc 3 1` | 1.5 ± 0.5 | 0.9 | 8.1 | 1.06 ± 0.51 |
+| `./target/release/aoc 3 2` | 2.0 ± 0.6 | 1.4 | 10.9 | 1.48 ± 0.64 |
+| `./target/release/aoc 4 1` | 1.7 ± 0.5 | 1.1 | 11.7 | 1.25 ± 0.56 |
+| `./target/release/aoc 4 2` | 1.9 ± 0.4 | 1.3 | 7.1 | 1.34 ± 0.54 |
+| `./target/release/aoc 5 1` | 4.9 ± 1.0 | 3.7 | 13.1 | 3.50 ± 1.38 |
+| `./target/release/aoc 5 2` | 5.6 ± 1.1 | 4.3 | 13.7 | 4.06 ± 1.57 |
+| `./target/release/aoc 6 1` | 4.8 ± 1.0 | 3.3 | 13.0 | 3.44 ± 1.38 |
+| `./target/release/aoc 6 2` | 1.4 ± 0.5 | 0.9 | 10.4 | 1.01 ± 0.48 |
+| `./target/release/aoc 7 1` | 1.9 ± 0.4 | 1.3 | 5.7 | 1.34 ± 0.53 |
+| `./target/release/aoc 7 2` | 2.9 ± 0.6 | 2.1 | 7.9 | 2.06 ± 0.83 |
+| `./target/release/aoc 8 1` | 1.6 ± 0.6 | 1.0 | 10.2 | 1.13 ± 0.58 |
+| `./target/release/aoc 8 2` | 2.7 ± 0.7 | 1.9 | 10.3 | 1.94 ± 0.81 |
+| `./target/release/aoc 9 1` | 1.7 ± 0.7 | 1.0 | 10.9 | 1.23 ± 0.64 |
+| `./target/release/aoc 9 2` | 1.8 ± 0.5 | 1.2 | 7.9 | 1.28 ± 0.55 |
+| `./target/release/aoc 10 1` | 1.5 ± 0.5 | 0.9 | 6.5 | 1.06 ± 0.51 |
+| `./target/release/aoc 10 2` | 1.4 ± 0.5 | 0.8 | 7.1 | 1.00 |
+| `./target/release/aoc 11 1` | 1.4 ± 0.4 | 0.9 | 6.6 | 1.03 ± 0.45 |
+| `./target/release/aoc 11 2` | 1.9 ± 0.6 | 1.2 | 7.6 | 1.38 ± 0.62 |
+| `./target/release/aoc 12 1` | 3.8 ± 0.7 | 3.0 | 9.3 | 2.75 ± 1.04 |
+| `./target/release/aoc 12 2` | 13.7 ± 1.4 | 10.8 | 20.0 | 9.86 ± 3.43 |
+| `./target/release/aoc 13 1` | 3.8 ± 0.6 | 2.9 | 8.9 | 2.71 ± 1.00 |
+| `./target/release/aoc 13 2` | 3.8 ± 0.7 | 3.0 | 11.7 | 2.76 ± 1.03 |
 
 These tests were run on GitHub CI which has lower performance than running locally. Local times are around 2x faster
