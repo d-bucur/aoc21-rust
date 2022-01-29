@@ -1,13 +1,7 @@
 # How to run
 
 ```bash
-cargo run --bin day{} -- {part}
-```
-
-Example
-
-```bash
-cargo run --bin day5 -- 2
+cargo run {day} {part}
 ```
 
 # Benchmark

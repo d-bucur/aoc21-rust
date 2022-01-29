@@ -1,8 +1,8 @@
-use std::{collections::HashSet, env};
+use std::collections::HashSet;
 
-use aoc::read_lines;
+use crate::read_lines;
 
-pub fn part1() -> u32 {
+pub fn part1() -> Option<u64> {
     let length = 12;
     let mut total = 0u32;
     let mut ones = vec![0u32; length];
@@ -28,10 +28,10 @@ pub fn part1() -> u32 {
         }
     }
     println!("{} = gamma: {gamma} * epsilon: {epsilon}", gamma * epsilon);
-    gamma * epsilon
+    Some(gamma as u64 * epsilon as u64)
 }
 
-pub fn part2() -> u32 {
+pub fn part2() -> Option<u64> {
     let length = 12;
     let mut all_nums: Vec<String> = Vec::new();
     let mut oxygen_nums = HashSet::new();
@@ -48,7 +48,7 @@ pub fn part2() -> u32 {
     let co2_idx = process(length, &all_nums, co2_nums, co2_filter);
     let co2 = u32::from_str_radix(all_nums[co2_idx].as_str(), 2).unwrap();
     println!("{} = oxygen {:?} * co2 {:?}", oxygen * co2, oxygen, co2);
-    oxygen * co2
+    Some(oxygen as u64 * co2 as u64)
 }
 
 fn oxygen_filter(zeroes: &HashSet<usize>, ones: &HashSet<usize>) -> bool {
@@ -96,29 +96,17 @@ fn divide(
     (zeroes, ones)
 }
 
-fn main() {
-    let part = env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            println!("Invalid option");
-            0
-        }
-    };
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_part1() {
-        assert_eq!(3009600, part1());
+        assert_eq!(3009600, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(6940518, part2());
+        assert_eq!(6940518, part2().unwrap());
     }
 }

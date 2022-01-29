@@ -1,11 +1,10 @@
-use aoc::read_lines;
-use aoc::Vec2d;
+use crate::read_lines;
+use crate::Vec2d;
 use regex::Regex;
-use std::env;
 
 const BOARD_SIZE: usize = 999;
 
-fn solve(draw_diagonals: bool) -> usize {
+fn solve(draw_diagonals: bool) -> Option<u64> {
     let re = Regex::new(r"(\d+),(\d+) -> (\d+),(\d+)").unwrap();
     let mut board = Vec2d::new(BOARD_SIZE, BOARD_SIZE, 0usize);
     for line in read_lines("5") {
@@ -23,7 +22,7 @@ fn solve(draw_diagonals: bool) -> usize {
     }
     let answer = board.nums.iter().filter(|&&e| e >= 2).count();
     println!("{answer}");
-    answer
+    Some(answer as u64)
 }
 
 fn my_range(a: usize, b: usize) -> Box<dyn Iterator<Item = usize>> {
@@ -58,16 +57,12 @@ fn draw(board: &mut Vec2d<usize>, x1: usize, y1: usize, x2: usize, y2: usize) {
     }
 }
 
-fn main() {
-    let args: Vec<String> = env::args().collect();
-    match args[1].as_str() {
-        "1" => solve(false),
-        "2" => solve(true),
-        _ => {
-            println!("Invalid option");
-            0
-        }
-    };
+pub fn part1() -> Option<u64> {
+    solve(false)
+}
+
+pub fn part2() -> Option<u64> {
+    solve(true)
 }
 
 #[cfg(test)]
@@ -76,11 +71,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(5294, solve(false));
+        assert_eq!(5294, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(21698, solve(true));
+        assert_eq!(21698, part2().unwrap());
     }
 }

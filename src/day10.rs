@@ -1,15 +1,15 @@
-use aoc::read_lines;
+use crate::read_lines;
 
-fn part1() -> u64 {
+pub fn part1() -> Option<u64> {
     let r = process_lines(true).0;
     println!("{r}");
-    r
+    Some(r)
 }
 
-fn part2() -> u64 {
+pub fn part2() -> Option<u64> {
     let r = process_lines(false).1;
     println!("{r}");
-    r
+    Some(r)
 }
 
 enum Bracket {
@@ -92,29 +92,17 @@ fn process_lines(skip_completion_score: bool) -> (u64, u64) {
     (invalid_score, completion_score)
 }
 
-fn main() {
-    let part = std::env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            println!("Invalid option");
-            0u64
-        }
-    };
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_part1() {
-        assert_eq!(389589, part1());
+        assert_eq!(389589, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(1190420163, part2());
+        assert_eq!(1190420163, part2().unwrap());
     }
 }

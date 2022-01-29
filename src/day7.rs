@@ -1,7 +1,6 @@
 use rayon::prelude::*;
-use std::env;
 
-use aoc::read_lines;
+use crate::read_lines;
 
 fn read_input() -> Vec<u32> {
     read_lines("7")
@@ -12,7 +11,7 @@ fn read_input() -> Vec<u32> {
         .collect()
 }
 
-pub fn part1() -> u32 {
+pub fn part1() -> Option<u64> {
     let positions = read_input();
     let (&a, &b) = (
         positions.iter().min().unwrap(),
@@ -24,7 +23,7 @@ pub fn part1() -> u32 {
         .min()
         .unwrap();
     println!("{dist_min}");
-    dist_min
+    Some(dist_min as u64)
 }
 
 fn distance_simple(positions: &[u32], t: u32) -> u32 {
@@ -34,7 +33,7 @@ fn distance_simple(positions: &[u32], t: u32) -> u32 {
         .sum::<u32>()
 }
 
-pub fn part2() -> u32 {
+pub fn part2() -> Option<u64> {
     let positions = read_input();
     let (&a, &b) = (
         positions.iter().min().unwrap(),
@@ -51,7 +50,7 @@ pub fn part2() -> u32 {
         .min()
         .unwrap();
     println!("{dist_min}");
-    dist_min
+    Some(dist_min as u64)
 }
 
 fn distance_exp(positions: &[u32], t: u32, distances: &[u32]) -> u32 {
@@ -64,29 +63,17 @@ fn distance_exp(positions: &[u32], t: u32, distances: &[u32]) -> u32 {
         .sum::<u32>()
 }
 
-fn main() {
-    let part = env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            println!("Invalid option");
-            0u32
-        }
-    };
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_part1() {
-        assert_eq!(341534, part1());
+        assert_eq!(341534, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(93397632, part2());
+        assert_eq!(93397632, part2().unwrap());
     }
 }

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use aoc::read_lines;
+use crate::read_lines;
 use core::hash::Hash;
 use regex::Regex;
 
@@ -166,23 +166,12 @@ fn solve(check_twice: bool) -> Option<u64> {
     Some(paths)
 }
 
-fn part1() -> Option<u64> {
+pub fn part1() -> Option<u64> {
     solve(false)
 }
 
-fn part2() -> Option<u64> {
+pub fn part2() -> Option<u64> {
     solve(true)
-}
-
-fn main() {
-    let part = std::env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            panic!("Invalid option");
-        }
-    };
 }
 
 #[cfg(test)]

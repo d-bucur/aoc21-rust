@@ -1,4 +1,5 @@
-use aoc::{read_lines, Vec2d};
+use crate::read_lines;
+use crate::Vec2d;
 
 const WIDTH: usize = 100;
 const HEIGHT: usize = 100;
@@ -17,7 +18,7 @@ fn parse_input() -> Vec2d<u8> {
     heights
 }
 
-fn part1() -> u32 {
+pub fn part1() -> Option<u64> {
     let heights = parse_input();
     let mut total: u32 = 0;
     for y in 0..HEIGHT as i32 {
@@ -40,10 +41,10 @@ fn part1() -> u32 {
     }
     // println!("{:?}", heights);
     println!("{total}");
-    total
+    Some(total as u64)
 }
 
-fn part2() -> u32 {
+pub fn part2() -> Option<u64> {
     // using DFS to count connected areas
     let mut basin_sizes = Vec::new();
     let heights = parse_input();
@@ -64,7 +65,7 @@ fn part2() -> u32 {
         .reduce(|a, i| a * i)
         .unwrap();
     println!("{result:?}");
-    result
+    Some(result as u64)
 }
 
 fn visit(x: usize, y: usize, visited: &mut Vec2d<bool>, heights: &Vec2d<u8>) -> Option<u32> {
@@ -90,29 +91,17 @@ fn visit(x: usize, y: usize, visited: &mut Vec2d<bool>, heights: &Vec2d<u8>) -> 
     Some(size)
 }
 
-fn main() {
-    let part = std::env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            println!("Invalid option");
-            0u32
-        }
-    };
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_part1() {
-        assert_eq!(504, part1());
+        assert_eq!(504, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(1558722, part2());
+        assert_eq!(1558722, part2().unwrap());
     }
 }

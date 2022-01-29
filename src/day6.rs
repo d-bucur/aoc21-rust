@@ -1,10 +1,11 @@
 use std::{collections::HashMap, thread};
 
-use aoc::read_lines;
+use crate::read_lines;
 
 const THREADS_MAX: usize = 8;
 
-fn part1(days: u32) -> u64 {
+pub fn part1() -> Option<u64> {
+    const DAYS: u32 = 80;
     // Keeping as example of threading even though solution 2 is more efficient
     let all_fish = read_fish();
     let chunk_size = (all_fish.len() as f32 / THREADS_MAX as f32).ceil() as usize;
@@ -14,7 +15,7 @@ fn part1(days: u32) -> u64 {
     let mut threads = Vec::new();
     for mut sector in fish_sectors {
         threads.push(thread::spawn(move || {
-            for _day in 0..days {
+            for _day in 0..DAYS {
                 simulate(&mut sector);
             }
             sector.len()
@@ -27,7 +28,7 @@ fn part1(days: u32) -> u64 {
         .sum::<usize>();
 
     println!("{total}");
-    total as u64
+    Some(total as u64)
 }
 
 fn read_fish() -> Vec<u32> {
@@ -54,13 +55,14 @@ fn simulate(fish: &mut Vec<u32>) {
     }
 }
 
-fn part2(days: u32) -> u64 {
+pub fn part2() -> Option<u64> {
+    const SIM_DAYS: u32 = 256;
     let fish_input = read_fish();
     let mut fish_colony = HashMap::new();
     for fish in fish_input {
         *fish_colony.entry(fish).or_insert(0u64) += 1;
     }
-    for _day in 0..days {
+    for _day in 0..SIM_DAYS {
         let mut new_colony = HashMap::new();
         for (&days, &count) in fish_colony.iter() {
             if days == 0 {
@@ -75,19 +77,7 @@ fn part2(days: u32) -> u64 {
     let total: u64 = fish_colony.iter().map(|e| e.1).sum();
     println!("{:?}", fish_colony);
     println!("{total}");
-    total
-}
-
-fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    match args[1].as_str() {
-        "1" => part1(80),
-        "2" => part2(256),
-        _ => {
-            println!("Invalid option");
-            0
-        }
-    };
+    Some(total)
 }
 
 #[cfg(test)]
@@ -96,11 +86,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(385391, part1(80));
+        assert_eq!(385391, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(1728611055389, part2(256));
+        assert_eq!(1728611055389, part2().unwrap());
     }
 }

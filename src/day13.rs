@@ -1,11 +1,13 @@
-use aoc::{read_lines, Vec2d};
 use regex::Regex;
 use termion::color;
+
+use crate::read_lines;
+use crate::Vec2d;
 
 const SET: u8 = 7;
 const UNSET: u8 = 0;
 
-fn part1() -> Option<usize> {
+pub fn part1() -> Option<u64> {
     let (mut dots, folds) = parse_input()?;
     let mut width = dots.get_width();
     let mut height = dots.get_height();
@@ -17,7 +19,7 @@ fn part1() -> Option<usize> {
             height /= 2;
         }
     }
-    let mut result = 0usize;
+    let mut result = 0u64;
     for y in 0..height {
         for x in 0..width {
             let dot = dots.at(x, y);
@@ -30,7 +32,7 @@ fn part1() -> Option<usize> {
     Some(result)
 }
 
-fn part2() -> Option<usize> {
+pub fn part2() -> Option<u64> {
     let (mut dots, folds) = parse_input()?;
     let mut width = dots.get_width();
     let mut height = dots.get_height();
@@ -111,17 +113,6 @@ fn parse_input() -> Option<(Vec2d<u8>, Vec<(String, usize)>)> {
     Some((dots, folds))
 }
 
-fn main() {
-    let part = std::env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            panic!("Invalid option");
-        }
-    };
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -133,6 +124,6 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        // assert_eq!(HZLEHJRK, part2().unwrap());
+        part2();
     }
 }

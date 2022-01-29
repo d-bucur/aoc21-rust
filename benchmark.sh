@@ -9,11 +9,11 @@ if [ "$1" = "all" ]; then
   hyperfine\
  --warmup 3\
  -P day 1 13\
- "./target/release/day{day} 1"\
- "./target/release/day{day} 2"\
+ "./target/release/aoc {day} 1"\
+ "./target/release/aoc {day} 2"\
  --export-markdown results.md
  format_table
 else
-  hyperfine --warmup 3 "./target/release/day${1} ${2}"
+  hyperfine --warmup 3 "./target/release/aoc ${1} ${2}"
 fi
 

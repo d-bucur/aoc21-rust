@@ -1,6 +1,7 @@
-use std::{collections::HashMap, env};
+use std::collections::HashMap;
 
-use aoc::{read_lines, Vec2d};
+use crate::read_lines;
+use crate::Vec2d;
 
 #[derive(Debug)]
 pub struct BingoBoard {
@@ -90,7 +91,7 @@ pub fn read_boards(input_it: impl Iterator<Item = String>) -> HashMap<usize, Bin
     boards
 }
 
-pub fn part1() -> u32 {
+pub fn part1() -> Option<u64> {
     let mut it = read_lines("4");
     let numbers = read_numbers(&mut it);
     let mut boards = read_boards(it);
@@ -99,14 +100,14 @@ pub fn part1() -> u32 {
         for (_, board) in boards.iter_mut() {
             if board.mark(num) {
                 println!("Bingo! {}", num * board.score);
-                return num * board.score;
+                return Some((num * board.score) as u64);
             }
         }
     }
-    return 0;
+    return None;
 }
 
-pub fn part2() -> u32 {
+pub fn part2() -> Option<u64> {
     let mut it = read_lines("4");
     let numbers = read_numbers(&mut it);
     let mut boards = read_boards(it);
@@ -125,22 +126,10 @@ pub fn part2() -> u32 {
                 "Last Bingo! on {num}. Unmaked: {score}. Final score: {}",
                 score * num
             );
-            return score * num;
+            return Some((score * num) as u64);
         }
     }
-    return 0;
-}
-
-fn main() {
-    let part = env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            println!("Invalid option");
-            0
-        }
-    };
+    None
 }
 
 #[cfg(test)]
@@ -149,11 +138,11 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        assert_eq!(67716, part1());
+        assert_eq!(67716, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(1830, part2());
+        assert_eq!(1830, part2().unwrap());
     }
 }

@@ -1,11 +1,11 @@
 use rayon::prelude::*;
 use std::collections::{HashMap, HashSet};
 
-use aoc::read_lines;
+use crate::read_lines;
 
-fn part1() -> u32 {
+pub fn part1() -> Option<u64> {
     let known_lengths: HashSet<usize> = [2, 3, 4, 7].into_iter().collect();
-    let mut total = 0;
+    let mut total = 0u64;
     for line in read_lines("8") {
         let l: Vec<_> = line.split('|').collect();
         let outputs: Vec<&str> = l[1].split_whitespace().collect();
@@ -16,7 +16,7 @@ fn part1() -> u32 {
         }
     }
     println!("{total}");
-    total
+    Some(total)
 }
 
 /*
@@ -43,7 +43,7 @@ rules for ambigous:
 #[derive(Debug)]
 struct SetCustom(Vec<bool>, String); // TODO can replace with integers and i32::count_ones
 
-fn part2() -> u32 {
+pub fn part2() -> Option<u64> {
     let total: usize = read_lines("8")
         .par_bridge()
         .map(|line| {
@@ -99,7 +99,7 @@ fn part2() -> u32 {
         })
         .sum();
     println!("{}", total);
-    total as u32
+    Some(total as u64)
 }
 
 fn to_set(s: &str) -> SetCustom {
@@ -125,29 +125,17 @@ fn intersect(a: &SetCustom, b: &SetCustom) -> i32 {
     common
 }
 
-fn main() {
-    let part = std::env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            println!("Invalid option");
-            0u32
-        }
-    };
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn test_part1() {
-        assert_eq!(493, part1());
+        assert_eq!(493, part1().unwrap());
     }
 
     #[test]
     fn test_part2() {
-        assert_eq!(1010460, part2());
+        assert_eq!(1010460, part2().unwrap());
     }
 }

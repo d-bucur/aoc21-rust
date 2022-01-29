@@ -1,4 +1,6 @@
-use aoc::{read_lines, Point, Vec2d};
+use crate::read_lines;
+use crate::Point;
+use crate::Vec2d;
 
 const WIDTH: usize = 10;
 const HEIGHT: usize = 10;
@@ -56,23 +58,12 @@ fn increment_energy(grid: &mut Vec2d<u8>, x: usize, y: usize, flashes: &mut u64)
     }
 }
 
-fn part1() -> Option<u64> {
+pub fn part1() -> Option<u64> {
     simulate(100, false)
 }
 
-fn part2() -> Option<u64> {
+pub fn part2() -> Option<u64> {
     simulate(u32::max_value(), true)
-}
-
-fn main() {
-    let part = std::env::args().nth(1).unwrap();
-    match part.as_str() {
-        "1" => part1(),
-        "2" => part2(),
-        _ => {
-            panic!("Invalid option");
-        }
-    };
 }
 
 #[cfg(test)]
