@@ -13,18 +13,20 @@ pub fn solve(steps: usize) -> Option<u64> {
     let mut idx: usize = 0;
     let mut letter_to_idx = HashMap::new();
     let mut letters: Vec<char> = Default::default();
-    let transforms_input: Vec<_> = in_it.map(|line| {
-        let caps = re.captures(&line).unwrap();
-        let left = caps[1].chars().next().unwrap();
-        let right = caps[2].chars().next().unwrap();
-        let result = caps[3].chars().next().unwrap();
-        // println!("settings {}{}->{}", left, right, result);
-        (
-            create_idx(&mut letter_to_idx, left, &mut idx, &mut letters),
-            create_idx(&mut letter_to_idx, right, &mut idx, &mut letters),
-            create_idx(&mut letter_to_idx, result, &mut idx, &mut letters),
-        )
-    }).collect();
+    let transforms_input: Vec<_> = in_it
+        .map(|line| {
+            let caps = re.captures(&line).unwrap();
+            let left = caps[1].chars().next().unwrap();
+            let right = caps[2].chars().next().unwrap();
+            let result = caps[3].chars().next().unwrap();
+            // println!("settings {}{}->{}", left, right, result);
+            (
+                create_idx(&mut letter_to_idx, left, &mut idx, &mut letters),
+                create_idx(&mut letter_to_idx, right, &mut idx, &mut letters),
+                create_idx(&mut letter_to_idx, result, &mut idx, &mut letters),
+            )
+        })
+        .collect();
     // println!("{:?}", letter_to_idx);
     // println!("{:?}", letters);
 
@@ -34,30 +36,37 @@ pub fn solve(steps: usize) -> Option<u64> {
     }
     // println!("{:?}", transforms);
 
-    let mut polymer: Vec<usize> = polymer_str.chars().map(|c| *letter_to_idx.get(&c).unwrap()).collect();
+    let polymer: Vec<usize> = polymer_str
+        .chars()
+        .map(|c| *letter_to_idx.get(&c).unwrap())
+        .collect();
+
+    let mut count = vec![0u64; letters.len()];
+    let mut pairs = HashMap::new();
+    for i in 0..polymer.len() - 1 {
+        let left = polymer[i];
+        let right = polymer[i + 1];
+        *pairs.entry((left, right)).or_insert(0) += 1;
+        count[left] += 1;
+    }
+    count[*polymer.last().unwrap()] += 1;
 
     for _step in 0..steps {
-        let mut next_polymer = Vec::<usize>::with_capacity(polymer.len() * 2 - 1);
-        for i in 0..polymer.len()-1 {
-            let left = polymer[i];
-            let right = polymer[i+1];
-            next_polymer.push(left);
-            next_polymer.push(transforms.at(left, right));
-            // print_polymer(&next_polymer, &letters);
+        let mut new_pairs = HashMap::new();
+        for ((left, right), pair_count) in pairs.iter() {
+            let n = transforms.at(*left, *right);
+            count[n] += pair_count;
+            *new_pairs.entry((*left, n)).or_insert(0) += pair_count;
+            *new_pairs.entry((n, *right)).or_insert(0) += pair_count;
         }
-        next_polymer.push(polymer[polymer.len()-1]);
-        polymer = next_polymer;
-        // print_polymer(&polymer, &letters);
-        println!("Finished step {_step}");
+        pairs = new_pairs;
     }
 
-    let mut counts = vec![0usize; letters.len()];
-    for p in polymer {
-        counts[p] += 1;
-    }
-    let min = *counts.iter().min().unwrap();
-    let max = *counts.iter().max().unwrap();
-    let res = (max - min) as u64;
+    // println!("{pairs:?}");
+    // println!("{count:?}");
+    let min = *count.iter().min().unwrap();
+    let max = *count.iter().max().unwrap();
+    let res = max - min;
     println!("{res}");
     Some(res)
 }
@@ -70,7 +79,12 @@ fn print_polymer(polymer: &Vec<usize>, letters: &Vec<char>) {
     println!();
 }
 
-fn create_idx(letter_to_idx: &mut HashMap<char, usize>, val: char, idx: &mut usize, letters: &mut Vec<char>) -> usize {
+fn create_idx(
+    letter_to_idx: &mut HashMap<char, usize>,
+    val: char,
+    idx: &mut usize,
+    letters: &mut Vec<char>,
+) -> usize {
     if let Some(old) = letter_to_idx.get(&val) {
         *old
     } else {
@@ -86,8 +100,7 @@ pub fn part1() -> Option<u64> {
 }
 
 pub fn part2() -> Option<u64> {
-    // solve(40) // Too slow
-    None
+    solve(40)
 }
 
 #[cfg(test)]
@@ -101,6 +114,6 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        // assert_eq!(Some(753), part2());
+        assert_eq!(Some(1976896901756), part2());
     }
 }
