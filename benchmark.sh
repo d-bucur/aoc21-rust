@@ -2,7 +2,7 @@
 cargo build --release
 
 format_table() {
-  sed -i 's/`.*release\/day\([0-9]\+\) \([0-9]\)`/[day \1 part \2](\/src\/bin\/day\1.rs)/g' results.md
+  sed -i 's/`.*release\/aoc \([0-9]\+\) \([0-9]\)`/[day \1 part \2](\/src\/day\1.rs)/g' results.md
 }
 
 hyperfine_bench() {
