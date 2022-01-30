@@ -1,182 +1,196 @@
 day1part1
-  Instructions:             1121105
-  L1 Accesses:              1535371
-  L2 Accesses:                   37
-  RAM Accesses:                 299
-  Estimated Cycles:         1546021
+  Instructions:             1121100
+  L1 Accesses:              1535367
+  L2 Accesses:                   39
+  RAM Accesses:                 295
+  Estimated Cycles:         1545887
 
 day1part2
-  Instructions:             1133150
-  L1 Accesses:              1551447
-  L2 Accesses:                   36
-  RAM Accesses:                 305
-  Estimated Cycles:         1562302
+  Instructions:             1133145
+  L1 Accesses:              1551441
+  L2 Accesses:                   40
+  RAM Accesses:                 301
+  Estimated Cycles:         1562176
 
 day2part1
-  Instructions:             7230737
-  L1 Accesses:             10761151
-  L2 Accesses:                75698
-  RAM Accesses:               11949
-  Estimated Cycles:        11557856
+  Instructions:             7230767
+  L1 Accesses:             10761194
+  L2 Accesses:                75699
+  RAM Accesses:               11944
+  Estimated Cycles:        11557729
 
 day2part2
-  Instructions:             7232380
-  L1 Accesses:             10763599
-  L2 Accesses:                75702
-  RAM Accesses:               11954
-  Estimated Cycles:        11560499
+  Instructions:             7232337
+  L1 Accesses:             10763563
+  L2 Accesses:                75696
+  RAM Accesses:               11942
+  Estimated Cycles:        11560013
 
 day3part1
-  Instructions:              670542
-  L1 Accesses:               895214
-  L2 Accesses:                   42
-  RAM Accesses:                 325
-  Estimated Cycles:          906799
+  Instructions:              670537
+  L1 Accesses:               895209
+  L2 Accesses:                   43
+  RAM Accesses:                 323
+  Estimated Cycles:          906729
 
 day3part2
-  Instructions:             4268207
-  L1 Accesses:              5532556
-  L2 Accesses:                12245
-  RAM Accesses:                2452
-  Estimated Cycles:         5679601
+  Instructions:             4267772
+  L1 Accesses:              5532256
+  L2 Accesses:                12250
+  RAM Accesses:                2446
+  Estimated Cycles:         5679116
 
 day4part1
-  Instructions:             2351922
-  L1 Accesses:              3056132
-  L2 Accesses:                 4795
-  RAM Accesses:                2394
-  Estimated Cycles:         3163897
+  Instructions:             2357654
+  L1 Accesses:              3063204
+  L2 Accesses:                 4944
+  RAM Accesses:                2393
+  Estimated Cycles:         3171679
 
 day4part2
-  Instructions:             3012114
-  L1 Accesses:              3889550
-  L2 Accesses:                 9182
-  RAM Accesses:                2408
-  Estimated Cycles:         4019740
+  Instructions:             3011472
+  L1 Accesses:              3888607
+  L2 Accesses:                 9422
+  RAM Accesses:                2406
+  Estimated Cycles:         4019927
 
 day5part1
-  Instructions:             8954764
-  L1 Accesses:             12201568
-  L2 Accesses:                83907
-  RAM Accesses:              130017
-  Estimated Cycles:        17171698
+  Instructions:             8956284
+  L1 Accesses:             12203611
+  L2 Accesses:                83893
+  RAM Accesses:              130013
+  Estimated Cycles:        17173531
 
 day5part2
-  Instructions:            12611777
-  L1 Accesses:             17184994
-  L2 Accesses:               187299
-  RAM Accesses:              130028
-  Estimated Cycles:        22672469
+  Instructions:            12613178
+  L1 Accesses:             17186819
+  L2 Accesses:               187345
+  RAM Accesses:              130021
+  Estimated Cycles:        22674279
 
 day6part1
-  Instructions:            30795999
-  L1 Accesses:             41063960
-  L2 Accesses:               233489
-  RAM Accesses:                7292
-  Estimated Cycles:        42486625
+  Instructions:            30795034
+  L1 Accesses:             41062715
+  L2 Accesses:               233430
+  RAM Accesses:                7289
+  Estimated Cycles:        42484980
 
 day6part2
-  Instructions:             1306233
-  L1 Accesses:              1703675
-  L2 Accesses:                  168
+  Instructions:             1306570
+  L1 Accesses:              1704106
+  L2 Accesses:                  158
   RAM Accesses:                 440
-  Estimated Cycles:         1719915
+  Estimated Cycles:         1720296
 
 day7part1
-  Instructions:             4432070
-  L1 Accesses:              5032094
-  L2 Accesses:                 1132
-  RAM Accesses:                1615
-  Estimated Cycles:         5094279
+  Instructions:             4442505
+  L1 Accesses:              5046057
+  L2 Accesses:                 1091
+  RAM Accesses:                1599
+  Estimated Cycles:         5107477
 
 day7part2
-  Instructions:            23898749
-  L1 Accesses:             27940251
-  L2 Accesses:                 1252
-  RAM Accesses:                1751
-  Estimated Cycles:        28007796
+  Instructions:            23907156
+  L1 Accesses:             27951243
+  L2 Accesses:                 1253
+  RAM Accesses:                1725
+  Estimated Cycles:        28017883
 
 day8part1
-  Instructions:              742175
-  L1 Accesses:              1016204
-  L2 Accesses:                  162
-  RAM Accesses:                 477
-  Estimated Cycles:         1033709
+  Instructions:              742171
+  L1 Accesses:              1016209
+  L2 Accesses:                  156
+  RAM Accesses:                 474
+  Estimated Cycles:         1033579
 
 day8part2
-  Instructions:             7580481
-  L1 Accesses:             10442842
-  L2 Accesses:                15552
-  RAM Accesses:                2299
-  Estimated Cycles:        10601067
+  Instructions:             7910903
+  L1 Accesses:             10886630
+  L2 Accesses:                18441
+  RAM Accesses:                2355
+  Estimated Cycles:        11061260
 
 day9part1
   Instructions:             2254644
-  L1 Accesses:              3132397
-  L2 Accesses:                   61
-  RAM Accesses:                 473
-  Estimated Cycles:         3149257
+  L1 Accesses:              3132398
+  L2 Accesses:                   59
+  RAM Accesses:                 474
+  Estimated Cycles:         3149283
 
 day9part2
   Instructions:             2685623
-  L1 Accesses:              3691426
-  L2 Accesses:                  233
-  RAM Accesses:                 749
-  Estimated Cycles:         3718806
+  L1 Accesses:              3691421
+  L2 Accesses:                  235
+  RAM Accesses:                 752
+  Estimated Cycles:         3718916
 
 day10part1
   Instructions:              264919
-  L1 Accesses:               344644
+  L1 Accesses:               344646
   L2 Accesses:                   47
-  RAM Accesses:                 317
-  Estimated Cycles:          355974
+  RAM Accesses:                 315
+  Estimated Cycles:          355906
 
 day10part2
   Instructions:              277944
-  L1 Accesses:               360927
-  L2 Accesses:                   54
-  RAM Accesses:                 379
-  Estimated Cycles:          374462
+  L1 Accesses:               360937
+  L2 Accesses:                   49
+  RAM Accesses:                 374
+  Estimated Cycles:          374272
 
 day11part1
   Instructions:             1256383
-  L1 Accesses:              1794509
-  L2 Accesses:                  105
-  RAM Accesses:                 224
-  Estimated Cycles:         1802874
+  L1 Accesses:              1794508
+  L2 Accesses:                  107
+  RAM Accesses:                 223
+  Estimated Cycles:         1802848
 
 day11part2
   Instructions:             4696870
-  L1 Accesses:              6708418
-  L2 Accesses:                  118
-  RAM Accesses:                 414
-  Estimated Cycles:         6723498
+  L1 Accesses:              6708413
+  L2 Accesses:                  120
+  RAM Accesses:                 417
+  Estimated Cycles:         6723608
 
 day12part1
-  Instructions:            11027956
-  L1 Accesses:             16258043
-  L2 Accesses:               179388
-  RAM Accesses:               19378
-  Estimated Cycles:        17833213
+  Instructions:            11027937
+  L1 Accesses:             16257935
+  L2 Accesses:               179475
+  RAM Accesses:               19373
+  Estimated Cycles:        17833365
 
 day12part2
-  Instructions:            84523634
-  L1 Accesses:            125350963
-  L2 Accesses:               179391
-  RAM Accesses:               19380
-  Estimated Cycles:       126926218
+  Instructions:            84523770
+  L1 Accesses:            125351064
+  L2 Accesses:               179484
+  RAM Accesses:               19373
+  Estimated Cycles:       126926539
 
 day13part1
-  Instructions:            14475732
-  L1 Accesses:             18133699
-  L2 Accesses:                13278
-  RAM Accesses:               23662
-  Estimated Cycles:        19028259
+  Instructions:            14475785
+  L1 Accesses:             18133863
+  L2 Accesses:                13193
+  RAM Accesses:               23658
+  Estimated Cycles:        19027858
 
 day13part2
-  Instructions:            16429066
-  L1 Accesses:             20751294
-  L2 Accesses:                14937
-  RAM Accesses:               23670
-  Estimated Cycles:        21654429
+  Instructions:            16428311
+  L1 Accesses:             20750490
+  L2 Accesses:                14846
+  RAM Accesses:               23666
+  Estimated Cycles:        21653030
+
+day14part1
+  Instructions:             9319549
+  L1 Accesses:             13895032
+  L2 Accesses:               144535
+  RAM Accesses:               27004
+  Estimated Cycles:        15562847
+
+day14part2
+  Instructions:            11607063
+  L1 Accesses:             16879358
+  L2 Accesses:               144532
+  RAM Accesses:               27007
+  Estimated Cycles:        18547263
 
