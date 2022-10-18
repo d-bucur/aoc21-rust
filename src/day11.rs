@@ -52,8 +52,8 @@ fn increment_energy(grid: &mut Vec2d<u8>, x: usize, y: usize, flashes: &mut u64)
     grid.set(x, y, new_energy);
     if new_energy == 10 {
         *flashes += 1;
-        for Point((x, y)) in grid.neighbors(x, y).chain(grid.diagonals(x, y)) {
-            increment_energy(grid, x, y, flashes)
+        for p in grid.neighbors(x, y).chain(grid.diagonals(x, y)) {
+            increment_energy(grid, p.x, p.y, flashes)
         }
     }
 }

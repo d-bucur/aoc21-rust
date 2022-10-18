@@ -9,6 +9,7 @@ pub mod day11;
 pub mod day12;
 pub mod day13;
 pub mod day14;
+pub mod day15;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -29,7 +30,17 @@ fn lines_iter(fin: impl Read) -> impl Iterator<Item = String> {
     it
 }
 
-pub struct Point<T>(pub (T, T));
+#[derive(PartialEq, Eq, Hash, Clone, Copy, Debug)]
+pub struct Point<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Point<T> {
+    pub fn new(x: T, y: T) -> Point<T> {
+        Point { x, y }
+    }
+}
 
 #[derive(Clone)]
 pub struct Vec2d<T> {
@@ -96,15 +107,15 @@ where
     }
 
     pub fn neighbors(&self, x: usize, y: usize) -> Vec2dNeighborsIterator {
-        let up = if y > 0 { Some(Point((x, y - 1))) } else { None };
+        let up = if y > 0 { Some(Point::new(x, y - 1)) } else { None };
         let down = if y < self.width - 1 {
-            Some(Point((x, y + 1)))
+            Some(Point::new(x, y + 1))
         } else {
             None
         };
-        let left = if x > 0 { Some(Point((x - 1, y))) } else { None };
+        let left = if x > 0 { Some(Point::new(x - 1, y)) } else { None };
         let right = if x < self.height - 1 {
-            Some(Point((x + 1, y)))
+            Some(Point::new(x + 1, y))
         } else {
             None
         };
@@ -116,22 +127,22 @@ where
 
     pub fn diagonals(&self, x: usize, y: usize) -> Vec2dNeighborsIterator {
         let d1 = if y > 0 && x > 0 {
-            Some(Point((x - 1, y - 1)))
+            Some(Point::new(x - 1, y - 1))
         } else {
             None
         };
         let d2 = if x < self.width - 1 && y < self.width - 1 {
-            Some(Point((x + 1, y + 1)))
+            Some(Point::new(x + 1, y + 1))
         } else {
             None
         };
         let d3 = if x > 0 && y < self.width - 1 {
-            Some(Point((x - 1, y + 1)))
+            Some(Point::new(x - 1, y + 1))
         } else {
             None
         };
         let d4 = if x < self.height - 1 && y > 0 {
-            Some(Point((x + 1, y - 1)))
+            Some(Point::new(x + 1, y - 1))
         } else {
             None
         };

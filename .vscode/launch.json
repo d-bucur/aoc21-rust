@@ -102,7 +102,7 @@
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/target/debug/aoc",
-            "args": ["14", "1"],
+            "args": ["15", "1"],
             "cwd": "${workspaceFolder}",
         }
     ]

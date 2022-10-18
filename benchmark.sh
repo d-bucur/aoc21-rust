@@ -9,7 +9,7 @@ hyperfine_bench() {
   if [ "$1" = "all" ]; then
     hyperfine\
   --warmup 3\
-  -P day 1 14\
+  -P day 1 15\
   "./target/release/aoc {day} 1"\
   "./target/release/aoc {day} 2"\
   --export-markdown results.md
